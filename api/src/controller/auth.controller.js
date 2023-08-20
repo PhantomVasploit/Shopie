@@ -45,7 +45,6 @@ module.exports.registerCustomer = async (req, res)=>{
         return res.status(201).json({message: 'Customer account created successfully'})
 
     } catch (error) {
-        console.log(error);
         return res.status(500).json({error: `Internal server error: ${error.message}`})   
     }
 }
@@ -95,4 +94,66 @@ module.exports.login = async (req, res)=>{
     }
 
     
+}
+
+module.exports.deactivateCustomerAccount = async(req, res)=>{
+    try {
+        const {id} = req.params
+        const pool = await mssql.connect(sqlConfig)
+        const checkEmailQuery = await pool
+        .request()
+        .input('id', id)
+        .execute('fetchCustomerById')
+
+        if(checkEmailQuery.recordset.length <= 0){
+            return res.status(404).json({error: "Customer account not found"})
+        }
+
+        if(checkEmailQuery.recordset[0].is_deleted ==1){
+            return res.status(400).json({error: 'Customer account is laready deactivatred'})
+        }
+
+        await pool
+        .request()
+        .input('id', id)
+        .execute('deactivateCustomerAccount')
+
+        return res.status(200).json({message: 'Customer account deactivated successfully'})
+
+    } catch (error) {
+        return res.status(500).json({error: `Internal server error: ${error.message}`})
+    }
+}
+
+module.exports.reactivateCustomerAccount = async(req, res)=>{
+
+    try {
+        
+        const {id} = req.params
+
+        const pool = await mssql.connect(sqlConfig)
+        const checkCustomerQuery = await pool
+        .request()
+        .input('id', id)
+        .execute('fetchCustomerById')
+
+        if(checkCustomerQuery.recordset.length <= 0){
+            return res.status(404).json({error: 'Customer account not found'})
+        }
+
+        if(checkCustomerQuery.recordset[0].is_deleted ==0){
+            return res.status(400).json({error: 'Customer account is already active'})
+        }
+
+        await pool
+        .request()
+        .input('id', id)
+        .execute('reactivateCustomerAccount')
+
+        return res.status(200).json({message: 'Customer account re-activated successfuly'})
+
+    } catch (error) {
+        return res.status(500).json({error: `Internal server error: ${error.message}`})
+    }
+
 }

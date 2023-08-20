@@ -2,7 +2,7 @@ const mssql = require('mssql')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 
-const { registerCustomer, login } = require("../../src/controller/auth.controller")
+const { registerCustomer, login, deactivateCustomerAccount, reactivateCustomerAccount } = require("../../src/controller/auth.controller")
 
 describe('User authentication tests', ()=>{
 
@@ -277,6 +277,213 @@ describe('User authentication tests', ()=>{
             })
         })
 
+    })
+
+    describe('Customer account deactivation and activation', ()=>{
+        
+        it('should fail to deactivate customer account if id passed is invalid', async()=>{
+            const mockRecordSet = []
+
+            const request = {
+                params: {
+                    id: 0
+                }
+            }
+
+            const response = {
+                status: jest.fn().mockReturnThis(),
+                json: jest.fn()
+            }
+
+            jest.spyOn(mssql, 'connect').mockResolvedValueOnce({
+                request: jest.fn().mockReturnThis(),
+                input: jest.fn().mockReturnThis(),
+                execute: jest.fn().mockResolvedValueOnce({ recordset: mockRecordSet })
+            })
+
+            await deactivateCustomerAccount(request, response)
+            expect(response.status).toHaveBeenCalledWith(404)
+            expect(response.json).toHaveBeenCalledWith({error: "Customer account not found"})
+
+        })
+
+        it('should fail to deactivate customer account if account is already deactivated', async()=>{
+            const mockRecordSet = [
+                {
+                    firstName: 'Tanjiro',
+                    lastName: 'Kamado',
+                    email: 'tanjiro@gmail.com',
+                    phoneNumber: '0712345678',
+                    profilePicture: 'https://www.phantomlabs.com',
+                    password: 'hjghgdgfdhg',
+                    is_verified: 1,
+                    is_deleted: 1,
+                    is_admin: 0
+                }
+            ]
+
+            const request = {
+                params: {
+                    id: 1
+                }
+            }
+
+            const response = {
+                status: jest.fn().mockReturnThis(),
+                json: jest.fn()
+            }
+
+            jest.spyOn(mssql, 'connect').mockResolvedValueOnce({
+                request: jest.fn().mockReturnThis(),
+                input: jest.fn().mockReturnThis(),
+                execute: jest.fn().mockResolvedValueOnce({ recordset: mockRecordSet })
+            })
+
+            await deactivateCustomerAccount(request, response)
+            expect(response.status).toHaveBeenCalledWith(400)
+            expect(response.json).toHaveBeenCalledWith({error: 'Customer account is laready deactivatred'})
+
+        })
+
+        it('should deactivate customer account if id passed is valid', async()=>{
+            const mockRecordSet = [
+                {
+                    firstName: 'Tanjiro',
+                    lastName: 'Kamado',
+                    email: 'tanjiro@gmail.com',
+                    phoneNumber: '0712345678',
+                    profilePicture: 'https://www.phantomlabs.com',
+                    password: 'hjghgdgfdhg',
+                    is_verified: 1,
+                    is_deleted: 0,
+                    is_admin: 0
+                }
+            ]
+
+            const request = {
+                params: {
+                    id: 1
+                }
+            }
+
+            const response = {
+                status: jest.fn().mockReturnThis(),
+                json: jest.fn()
+            }
+
+            jest.spyOn(mssql, 'connect').mockResolvedValueOnce({
+                request: jest.fn().mockReturnThis(),
+                input: jest.fn().mockReturnThis(),
+                execute: jest.fn().mockResolvedValueOnce({ recordset: mockRecordSet })
+            })
+
+            await deactivateCustomerAccount(request, response)
+            expect(response.status).toHaveBeenCalledWith(200)
+            expect(response.json).toHaveBeenCalledWith({message: 'Customer account deactivated successfully'})
+
+        })
+
+        it('should fail to reactivate customer account if id passed is invalid', async()=>{
+            const mockRecordSet = []
+
+            const request = {
+                params: {
+                    id: 0
+                }
+            }
+
+            const response = {
+                status: jest.fn().mockReturnThis(),
+                json: jest.fn()
+            }
+
+            jest.spyOn(mssql, 'connect').mockResolvedValueOnce({
+                request: jest.fn().mockReturnThis(),
+                input: jest.fn().mockReturnThis(),
+                execute: jest.fn().mockResolvedValueOnce({ recordset: mockRecordSet })
+            })
+
+            await reactivateCustomerAccount(request, response)
+            expect(response.status).toHaveBeenCalledWith(404)
+            expect(response.json).toHaveBeenCalledWith({error: "Customer account not found"})
+
+        })
+        
+        it('should fail to reactivate customer account if account is already active', async()=>{
+            const mockRecordSet = [
+                {
+                    firstName: 'Tanjiro',
+                    lastName: 'Kamado',
+                    email: 'tanjiro@gmail.com',
+                    phoneNumber: '0712345678',
+                    profilePicture: 'https://www.phantomlabs.com',
+                    password: 'hjghgdgfdhg',
+                    is_verified: 1,
+                    is_deleted: 0,
+                    is_admin: 0
+                }
+            ]
+
+            const request = {
+                params: {
+                    id: 1
+                }
+            }
+
+            const response = {
+                status: jest.fn().mockReturnThis(),
+                json: jest.fn()
+            }
+
+            jest.spyOn(mssql, 'connect').mockResolvedValueOnce({
+                request: jest.fn().mockReturnThis(),
+                input: jest.fn().mockReturnThis(),
+                execute: jest.fn().mockResolvedValueOnce({ recordset: mockRecordSet })
+            })
+
+            await reactivateCustomerAccount(request, response)
+            expect(response.status).toHaveBeenCalledWith(400)
+            expect(response.json).toHaveBeenCalledWith({error: 'Customer account is already active'})
+
+        })
+
+        it('should reactivate customer account if id provided is valid', async()=>{
+            const mockRecordSet = [
+                {
+                    firstName: 'Tanjiro',
+                    lastName: 'Kamado',
+                    email: 'tanjiro@gmail.com',
+                    phoneNumber: '0712345678',
+                    profilePicture: 'https://www.phantomlabs.com',
+                    password: 'hjghgdgfdhg',
+                    is_verified: 1,
+                    is_deleted: 1,
+                    is_admin: 0
+                }
+            ]
+
+            const request = {
+                params: {
+                    id: 1
+                }
+            }
+
+            const response = {
+                status: jest.fn().mockReturnThis(),
+                json: jest.fn()
+            }
+
+            jest.spyOn(mssql, 'connect').mockResolvedValueOnce({
+                request: jest.fn().mockReturnThis(),
+                input: jest.fn().mockReturnThis(),
+                execute: jest.fn().mockResolvedValueOnce({ recordset: mockRecordSet })
+            })
+
+            await reactivateCustomerAccount(request, response)
+            expect(response.status).toHaveBeenCalledWith(200)
+            expect(response.json).toHaveBeenCalledWith({message: 'Customer account re-activated successfuly'})
+
+        })
     })
 
 })

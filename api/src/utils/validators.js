@@ -111,10 +111,8 @@ module.exports.updateSchema = Joi.object({
     }),
     
     phoneNumber: Joi.string()
-    .pattern(/^\+?[1-9]\d{1,14}$/)
     .required()
     .messages({
-        'string.pattern.base': 'Phone number must be a valid numeric string with an optional country code.',
         'any.required': 'Phone number field is required'
     }),
 
