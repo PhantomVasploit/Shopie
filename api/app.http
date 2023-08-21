@@ -1,0 +1,47 @@
+#add new product
+POST http://localhost:4500/products
+Content-Type: application/json
+
+{
+    "product_name": "Gucci Embroidered Fabric Handbag",
+    "description": "If I had my way, I'd devote at least half my closet to Prada totes." ,
+    "category": "bags",
+    "price": 2000,
+    "image": "https://hips.hearstapps.com/hmg-prod/images/guest-wears-a-black-and-dark-gray-print-pattern-coat-black-news-photo-1674570282.jpg?resize=1200:*",
+    "quantity": 1
+}
+
+
+### GET ALL PRODUCTS
+GET http://localhost:4500/products
+
+
+### GET ONE PRODUCT
+GET http://localhost:4500/products/cbb99d1b-7072-4004-801d-b1da030ebc21
+
+### GET PRODUCTS OF SPECIFIC CATEGORY
+GET http://localhost:4500/products/category/bags
+
+
+### UPDATING PROJECT
+PUT http://localhost:4500/products/cbb99d1b-7072-4004-801d-b1da030ebc21
+Content-Type: application/json
+
+{
+    "product_name": "Burkin Embroidered Fabric Handbag",
+    "description": "If I had my way, I'd devote at least half my closet to Prada totes." ,
+    "category": "bags",
+    "price": 2000,
+    "image": "https://hips.hearstapps.com/hmg-prod/images/guest-wears-a-black-and-dark-gray-print-pattern-coat-black-news-photo-1674570282.jpg?resize=1200:*"
+}
+
+
+###delete
+DELETE http://localhost:4500/products
+Content-Type: application/json
+
+{
+    "product_ids":[
+        "57e1e28c-3b15-4486-befc-d93127497a7e"
+    ]
+}
