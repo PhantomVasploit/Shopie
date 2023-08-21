@@ -1,7 +1,8 @@
 const express = require('express')
 const cron = require('node-cron')
-const { welcomeEmail } = require('./email_service/user_email_service')
 require('dotenv').config()
+
+const { welcomeEmail } = require('./email_service/user_email_service')
 
 const app = express()
 const port = process.env.PORT
