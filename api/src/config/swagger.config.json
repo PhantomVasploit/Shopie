@@ -95,12 +95,12 @@
           }
       },
 
-      "/employees": {
+      "/customers": {
           "get": {
-              "tags": ["Employee"],
-              "summary": "Fetches all user account details",
-              "description": "It returns all user accounts",
-              "operationId": "getEmployeesAccounts",
+              "tags": ["Customer"],
+              "summary": "Fetches all customer account details",
+              "description": "It returns all customer accounts",
+              "operationId": "deactivateCustomerAccounts",
               "consumes": ["application/json"],
               "produces": ["application/json"],
               "parameters": [
@@ -129,12 +129,98 @@
           }
       },
 
-      "/employee/{id}": {
+      "/customer/reactivate-account/{id}": {
+        "put": {
+            "tags": ["Customer"],
+            "summary": "Reactivate's customer account",
+            "description": "It reactivates the customer's account that matches the id in the url params",
+            "operationId": "reactivateCustomerAccount",
+            "consumes": ["application/json"],
+            "produces": ["application/json"],
+            "parameters": [
+                {
+                    "name": "Authorization",
+                    "in": "header",
+                    "description": "JWT access token",
+                    "required": true,
+                    "type": "string"
+                },
+                {
+                    "in": "path",
+                    "name": "id",
+                    "description": "Numeric ID of the customer's account",
+                    "required": true
+                }
+            ],
+            "security": [{
+                "defaultAuthorized": []
+            }],
+            "responses": {
+                "200": {
+                    "description": "Successful Operation"
+                },
+                "401": {
+                    "description": "Restricted access"
+                },
+                "404": {
+                  "description": "Customer account not found"
+              },
+                "500": {
+                    "description": "Internal server error"
+                }
+            }
+        }
+      },
+
+      "/customer/deactivate-account/{id}": {
+        "put": {
+            "tags": ["Customer"],
+            "summary": "Deactivate's customer account",
+            "description": "It deactivates the customer's account that matches the id in the url params",
+            "operationId": "getCustomerAccount",
+            "consumes": ["application/json"],
+            "produces": ["application/json"],
+            "parameters": [
+                {
+                    "name": "Authorization",
+                    "in": "header",
+                    "description": "JWT access token",
+                    "required": true,
+                    "type": "string"
+                },
+                {
+                    "in": "path",
+                    "name": "id",
+                    "description": "Numeric ID of the customer's account",
+                    "required": true
+                }
+            ],
+            "security": [{
+                "defaultAuthorized": []
+            }],
+            "responses": {
+                "200": {
+                    "description": "Successful Operation"
+                },
+                "401": {
+                    "description": "Restricted access"
+                },
+                "404": {
+                  "description": "Customer account not found"
+              },
+                "500": {
+                    "description": "Internal server error"
+                }
+            }
+        }
+      },
+
+      "/customer/{id}": {
           "get": {
-              "tags": ["Employee"],
-              "summary": "Fetches a user's account details",
-              "description": "It returns the user's account details that matches the id in the url params",
-              "operationId": "getEmployeeAccounts",
+              "tags": ["Customer"],
+              "summary": "Fetches a customer's account details",
+              "description": "It returns the customer's account details that matches the id in the url params",
+              "operationId": "getCustomerAccount",
               "consumes": ["application/json"],
               "produces": ["application/json"],
               "parameters": [
@@ -148,7 +234,7 @@
                   {
                       "in": "path",
                       "name": "id",
-                      "description": "Numeric ID of the user's account",
+                      "description": "Numeric ID of the customer's account",
                       "required": true
                   }
               ],
@@ -162,16 +248,19 @@
                   "401": {
                       "description": "Restricted access"
                   },
+                  "404": {
+                    "description": "Customer account not found"
+                },
                   "500": {
                       "description": "Internal server error"
                   }
               }
           },
           "put": {
-              "tags": ["Employee"],
-              "summary": "Updates a user's account details",
-              "description": "It updates the user's account details that matches the id in the url params",
-              "operationId": "updateEmployeeAccounts",
+              "tags": ["Customer"],
+              "summary": "Updates a customer's account details",
+              "description": "It updates the customer's account details that matches the id in the url params",
+              "operationId": "updateCustomerAccount",
               "consumes": ["application/json"],
               "produces": ["application/json"],
               "parameters": [
@@ -206,16 +295,19 @@
                   "401": {
                       "description": "Restricted access"
                   },
+                  "404": {
+                    "description": "Customer account not found"
+                },
                   "500": {
                       "description": "Internal server error"
                   }
               }
           },
           "delete": {
-              "tags": ["Employee"],
-              "summary": "Deletes a user's account details",
-              "description": "It deletes the user's account details that matches the id in the url params",
-              "operationId": "deleteEmployeeAccounts",
+              "tags": ["Customer"],
+              "summary": "Deletes a customer's account details",
+              "description": "It deletes the customer's account details that matches the id in the url params",
+              "operationId": "deleteCustomerAccount",
               "consumes": ["application/json"],
               "produces": ["application/json"],
               "parameters": [
@@ -229,7 +321,7 @@
                   {
                       "in": "path",
                       "name": "id",
-                      "description": "Numeric ID of the user's account",
+                      "description": "Numeric ID of the customer's account",
                       "required": true
                   }
               ],
@@ -243,6 +335,9 @@
                   "401": {
                       "description": "Restricted access"
                   },
+                  "404": {
+                    "description": "Customer account not found"
+                },
                   "500": {
                       "description": "Internal server error"
                   }
