@@ -1,6 +1,8 @@
 USE ShopieDatabase
 GO
 
+-- DROP TABLE Products
+
 
 BEGIN 
     TRY
@@ -10,7 +12,8 @@ BEGIN
             image VARCHAR(500) NOT NULL,
             category VARCHAR(500) NOT NULL,
             description VARCHAR(1000) NOT NULL,
-            price INT,
+            price INT NOT NULL,
+            quantity INT NOT NULL
         )
     END TRY
 BEGIN   

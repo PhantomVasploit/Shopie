@@ -218,3 +218,8 @@ main .footer{
     height: 30%;
     border: 1px solid gray;
 }
+
+a{
+    color: #C3B212;
+    text-decoration: none;
+}

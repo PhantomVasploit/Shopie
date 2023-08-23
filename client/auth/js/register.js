@@ -5,6 +5,8 @@ const password = document.querySelector('#password')
 const phoneNumber = document.querySelector('#phone-number')
 const profilePicture = document.querySelector('#profile-picture')
 
+let profilePictureUrl = ''
+
 function handleSubmissionError(message){
     Toastify({
             text: message,
@@ -17,8 +19,39 @@ function handleSubmissionError(message){
         }).showToast();
 }
 
+profilePicture.addEventListener('change', (e)=>{
+    const files = e.target.files
+    if(files){
+        const formData = new FormData()
+        formData.append("file", files[0])
+        formData.append("upload_preset", "Shopie")
+        formData.append("cloud_name", "dx3mq7rzr")
 
-document.querySelector('#register-form').addEventListener('submit', (e)=>{
+
+        fetch('https://api.cloudinary.com/v1_1/dx3mq7rzr/image/upload', {
+            method: "POST",
+            body: formData
+        })
+        .then((res)=>{
+            res.json()
+            .then((response)=>{
+                profilePictureUrl = response.url
+                
+            })
+            .catch((e)=>{
+                if(!e.response){
+                    handleSubmissionError(e.message)
+                }else{
+                    handleSubmissionError(e.response.data.error)
+                }
+            })
+        })
+    } 
+})
+
+
+
+document.querySelector('#register-form').addEventListener('submit', async(e)=>{
     e.preventDefault()
     
     const firstNameErorMessage = document.querySelector('.first-name-error')
@@ -87,14 +120,14 @@ document.querySelector('#register-form').addEventListener('submit', (e)=>{
     }
 
     const phoneNumberErrorMessage = document.querySelector('.phone-number-error')
-    if(password.value == ''){
+    if(phoneNumber.value == ''){
         phoneNumber.style.border = "1px solid red"
         phoneNumberErrorMessage.innerHTML = "Please enter your phone number"
         phoneNumberErrorMessage.style.color = "red"
         phoneNumberErrorMessage.style.display = "block"
         phoneNumberErrorMessage.style.padding = "5px"
 
-        password.addEventListener('input', ()=>{
+        phoneNumber.addEventListener('input', ()=>{
             phoneNumber.style.border = ".5px solid black"
             phoneNumberErrorMessage.innerHTML = ""
             phoneNumberErrorMessage.style.color = "black"
@@ -103,14 +136,15 @@ document.querySelector('#register-form').addEventListener('submit', (e)=>{
     }
 
     const profilePictureErrorMessage = document.querySelector('.profile-picture-error')
-    if(password.value == ''){
+    if(profilePicture.value == ''){
         profilePicture.style.border = "1px solid red"
-        profilePictureErrorMessage.innerHTML = "Please enter your phone number"
+        profilePictureErrorMessage.innerHTML = "Please select a profile picture"
         profilePictureErrorMessage.style.color = "red"
         profilePictureErrorMessage.style.display = "block"
         profilePictureErrorMessage.style.padding = "5px"
 
-        password.addEventListener('input', ()=>{
+        profilePicture.addEventListener('change', (e)=>{
+            console.log(e);
             profilePicture.style.border = ".5px solid black"
             profilePictureErrorMessage.innerHTML = ""
             profilePictureErrorMessage.style.color = "black"
@@ -118,68 +152,40 @@ document.querySelector('#register-form').addEventListener('submit', (e)=>{
         })
     }
 
-    // save image to cloudinary
     
-    // profilePicture.addEventListener('change', function (event) {
-    //     // This function will be called when the user selects a file
-    //     const selectedFile = event.target.files[0];
     
-    //     // You can now work with the selected file, for example, you can access its name:
-    //     console.log(`Selected file name: ${selectedFile.name}`);
-    // });
+    
 
-    profilePicture.addEventListener('change', (event)=>{
-        const files = event.target.files
-        
-        if(files){
-            const formData = new FormData()
-            formData.append("file", files[0])
-            formData.append("upload_preset", "Shopie")
-            formData.append("cloud_name", "dx3mq7rzr")
+    if(firstName.value && lastName.value && email.value && password.value && phoneNumber.value && profilePictureUrl){
 
-            console.log(formData);
-
-            axios.post('https://api.cloudinary.com/v1_1/dx3mq7rzr/image/upload', 
-            {
-                formData
-            })
-            .then((response)=>{
-                console.log(response);
-            })
-            .catch((e)=>{
-                console.log(e.message);
-            })
-        }
-    })
-
-    // if(firstName.value && lastName.value && email.value && password.value){
-
-    //     axios.post('http://127.0.0.1:8080/api/shopie/v1/customer/register', 
-    //     {
-    //         firstName: firstName.value,
-    //         lastName: lastName.value,
-    //         email: email.value,
-    //         password: password.value
-    //     })
-    //     .then((response)=>{
-    //         Toastify({
-    //             text: response.data.message,
-    //             backgroundColor: "#4caf50", // Custom success color
-    //             duration: 3000, // Time in milliseconds before the toast auto-closes
-    //             close: true,
-    //             gravity: "top",
-    //             position: "success",
-    //           }).showToast();
-    //           window.location.href = './login.html'
-    //     })
-    //     .catch((e)=>{
-    //         if(!e.response){
-    //             handleSubmissionError(e.message)
-    //         }else{
-    //             handleSubmissionError(e.response.data.error)
-    //         }
-    //     })
-    // }
+        axios.post('http://127.0.0.1:8080/api/shopie/v1/customer/register', 
+        {
+            firstName: firstName.value,
+            lastName: lastName.value,
+            email: email.value,
+            password: password.value,
+            phoneNumber: phoneNumber.value,
+            profilePicture: profilePictureUrl
+        })
+        .then((response)=>{
+            Toastify({
+                text: response.data.message,
+                backgroundColor: "#4caf50", // Custom success color
+                duration: 3000, // Time in milliseconds before the toast auto-closes
+                close: true,
+                gravity: "top",
+                position: "success",
+              }).showToast();
+              window.location.href = './login.html'
+        })
+        .catch((e)=>{
+            if(!e.response){
+                handleSubmissionError(e.message)
+            }else{
+                handleSubmissionError(e.response.data.error)
+            }
+        })
+    }
 
 
 })

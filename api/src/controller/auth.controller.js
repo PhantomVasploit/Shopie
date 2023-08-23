@@ -1,7 +1,8 @@
 const mssql = require('mssql')
 const bcrypt = require('bcrypt')
-const jwt = require('jsonwebtoken')
 const crypto = require('crypto')
+const jwt = require('jsonwebtoken')
+const nodemailer = require('nodemailer')
 
 const { registrationSchema, loginSchema } = require('../utils/validators')
 const { sqlConfig } = require('../config/database.connection.config')
@@ -179,9 +180,84 @@ module.exports.forgotPassword = async(req, res)=>{
         await pool
         .request()
         .input('email', email)
-        .input
+        .input('password_reset_token', token)
+        .execute('resetPasswordProc')
+
+        const transporter = nodemailer.createTransport({
+            service: 'gmail',
+            port: 587,
+            auth: {
+                user: process.env.EMAIL,
+                pass: process.env.EMAIL_PWD
+            }
+        })
+
+        const mailOptions = {
+            from: process.env.EMAIL,
+            to: checkEmailQuery.recordset[0].email,
+            subject: 'Shopie Password Reset',
+            text: `Please use the token we've sent you to change your password. Token: ${token}`
+        }
+
+        transporter.sendMail(mailOptions, (error, info)=>{
+            if(error){
+                res.status(500).json({error: 'Internal server error'})
+            }
+            res.status(200).json({message: 'Password reset email sent'})
+        })
+
+    } catch (error) {
+        return res.status(500).json({error: `Internal server error: ${error.message}`})
+    }
+}
 
 
+module.exports.verifyToken = async(req, res)=>{
+    try {
+        const {token, email} = req.body
+        const pool = await mssql.connect(sqlConfig)
+        const checkEmailQuery = await pool
+        .request()
+        .input('email', email)
+        .execute('fetchCustomerByEmailProc')
+
+        if(checkEmailQuery.recordset.length <= 0){
+            return res.status(404).json({error: 'Email is not registered'})
+        }
+        
+        if(checkEmailQuery.recordset[0].password_reset_token == token ){
+            return res.status(200).json({message: `Valid Token`})
+        }
+        return res.status(400).json({error: 'Invalid token or token expired'})
+    } catch (error) {
+        return res.status(500).json({error: `Internal server error: ${error.message}`})
+    }
+}
+
+module.exports.resetPassword = async(req, res)=>{
+    try {
+        
+        const { password, email } = req.body
+        const pool = await mssql.connect(sqlConfig)
+        const checkEmailQuery = await pool
+        .request()
+        .input('email', email)
+        .execute('fetchCustomerByEmailProc')
+
+        if(checkEmailQuery.recordset.length <= 0){
+            return res.status(404).json({error: 'Email is not registered'})
+        }
+
+        const salt = await bcrypt.genSalt(10)
+        const hashedPwd = await bcrypt.hash(password, salt)
+
+        await pool
+        .request()
+        .input('passowrd', hashedPwd)
+        .input('email', email)
+        .execute('resetPasswordProc')
+
+        return res.status(200).json({message: 'Password reset successful'})
     } catch (error) {
         return res.status(500).json({error: `Internal server error: ${error.message}`})
     }

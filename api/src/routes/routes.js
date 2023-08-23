@@ -1,5 +1,5 @@
 const {Router} = require('express')
-const { registerCustomer, login, deactivateCustomerAccount, reactivateCustomerAccount } = require('../controller/auth.controller')
+const { registerCustomer, login, deactivateCustomerAccount, reactivateCustomerAccount, forgotPassword, verifyToken, resetPassword } = require('../controller/auth.controller')
 const { fetchCustomerById, fetchAllCustomers, updateCustomerAccount, deleteCustomerAccount } = require('../controller/customer.controller')
 const { addProduct, fetchAllProducts, fetchOneProduct, updateProduct, deleteProject, fetchCategory } = require('../controller/product.controller');
 const { authorization } = require('../middleware/authorization')
@@ -9,7 +9,10 @@ const router = Router()
 
 // User's authentication routes
 router.post('/customer/login', login)
+router.post('/customer/verify-token', verifyToken)
 router.post('/customer/register', registerCustomer)
+router.post('/customer/reset-password', resetPassword)
+router.post('/customer/forgot-password', forgotPassword)
 router.put('/customer/deactivate-account/:id', authorization, deactivateCustomerAccount)
 router.put('/customer/reactivate-account/:id', authorization, reactivateCustomerAccount)
 
