@@ -68,7 +68,7 @@ document.querySelector('.form-container').addEventListener('submit', (e)=>{
               console.log(response);
               localStorage.setItem('user', JSON.stringify(response.data.user))
               localStorage.setItem('token', response.data.token)
-              window.location.href = './dashboard.html'
+              window.location.href = '../../customer/html/customerCategoryView.html'
         })
         .catch((e)=>{
             

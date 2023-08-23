@@ -131,13 +131,13 @@ module.exports.reactivateCustomerAccount = async(req, res)=>{
 
     try {
         
-        const {id} = req.params
+        const {email, password} = req.body
 
         const pool = await mssql.connect(sqlConfig)
         const checkCustomerQuery = await pool
         .request()
-        .input('id', id)
-        .execute('fetchCustomerById')
+        .input('email', email)
+        .execute('fetchCustomerByEmailProc')
 
         if(checkCustomerQuery.recordset.length <= 0){
             return res.status(404).json({error: 'Customer account not found'})
@@ -146,10 +146,17 @@ module.exports.reactivateCustomerAccount = async(req, res)=>{
         if(checkCustomerQuery.recordset[0].is_deleted ==0){
             return res.status(400).json({error: 'Customer account is already active'})
         }
+        
+        const valid = await bcrypt.compare(password, checkCustomerQuery.recordset[0].passowrd)
+
+        if(!valid){
+            res.status(401).json({error: 'Invalid password'})
+        }
+
 
         await pool
         .request()
-        .input('id', id)
+        .input('email', email)
         .execute('reactivateCustomerAccount')
 
         return res.status(200).json({message: 'Customer account re-activated successfuly'})

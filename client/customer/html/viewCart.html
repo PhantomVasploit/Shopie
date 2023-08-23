@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../static/css/style.css">
+    <title>Dashboard: Admin</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100&family=Prosto+One&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100&family=Montserrat:wght@300&family=Prosto+One&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    
+
+        <nav class="navbar">
+            <img class="shopie-logo" src="../../static/img/shopie.png" alt="">
+            <div class="navig">
+                <p>Home</p>
+                <p> About Us</p>
+                <p>Contact Us</p>
+            </div>
+            <div class="buttons">
+                <button>Login</button>
+                <button style="background-color: #0FAFE9; color: white;">Register</button>
+            </div>
+        </nav>
+
+        <div class="lower-body">
+
+            
+
+            <div class="aside">
+                <p class="heading" style="margin-top: 28px; background-color: #c3efff;">Dashboard</p>
+                <p>Products</p>
+                <p>Users</p>
+                <p>Profile</p>
+                <p style="border-radius: 0 0 7px 7px;">Logout</p>
+            </div>
+                
+
+
+            <div class="products-body">
+                <h3 id="edit-products-heading">Cart</h3>
+                <br>
+                <!-- product table view -->
+                <div class="cart-container">
+                    <div class="view-cart">
+                        <div class="cart-item">
+                            <div class="img">
+                                <img src="../../static/img/product-coffee.png" alt="">
+                            </div>
+                            <div class="item-details">
+                                <h5>Ceylon Ginger Cinnamon chai tea - 50 g</h5>
+                                <button>REMOVE</button>
+                            </div>
+                            <div class="item-control">
+                                <div>
+                                    <button><i class="fas fa-minus"></i></button>
+                                    <p class="order-quantity">1</p>
+                                    <button><i class="fas fa-plus"></i></button>
+                                </div>
+                                <p style="margin-top: 6px;">ksh 3,000</p>
+                            </div>
+                        </div>
+                        <div class="cart-item">
+                            <div class="img">
+                                <img src="../../static/img/product-coffee.png" alt="">
+                            </div>
+                            <div class="item-details">
+                                <h5>Ceylon Ginger Cinnamon chai tea - 50 g</h5>
+                                <button>REMOVE</button>
+                            </div>
+                            <div class="item-control">
+                                <div>
+                                    <button><i class="fas fa-minus"></i></button>
+                                    <p class="order-quantity">1</p>
+                                    <button><i class="fas fa-plus"></i></button>
+                                </div>
+                                <p style="margin-top: 6px;">ksh 3,000</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cart-controls">
+                        <div class="order-summary">
+                            <h3>Order summary</h3>
+                            <div class="order-summary-list">
+                                <div>
+                                    <p>Subtotal</p>
+                                    <p>Ksh 6,000</p>
+                                </div>
+                                <div>
+                                    <p>Delivery</p>
+                                    <p>Ksh 500</p>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="total-cost">
+                                <h4>Total</h4>
+                                <h4>Ksh 6,500</h4>
+                            </div>
+
+                            <p style="font-size: 14px;">Estimated shipping time: 2 days</p>
+
+                            <button>CHECK OUT</button>
+
+                        </div>
+                        <div class="payment">
+                            <h3>Payment type</h3>
+                            <div class="payment-services">
+                                <div >
+                                    <img src="../../static/img/lipanampesa.png" alt="">
+                                    <img  style="height: 30px;" src="../../static/img/PayPal.svg.png" alt="">
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="delivery-guide">
+                            <h3>Delivery and retour</h3>
+                            <br>
+                            <ul>
+                                <li>Order before 12:00 and we will ship the same day.</li>
+                                <li>Orders made after Friday 12:00 are processed on Monday.</li>
+                                <li>To return your articles, please contact us first.</li>
+                                <li>Postal charges for retour are not reimbursed.</li>
+                            </ul>
+                        </div>
+
+                    </div>
+                    
+                </div>
+            </div>
+
+    </div>
+    <br><br><br><br>
+    <footer>
+        <div class="footer-container">
+            <div class="footer-logo-pnb" style="">
+                <img class="footer-shopie-logo" src="../../static/img/shopie.png" alt="">
+            </div>
+            <div class="company-container">
+                <h4 class="">Company</h4>
+                <a class="btn-link" href="">Home</a>
+                <a class="btn-link" href="">About Us</a>
+                <a class="btn-link" href="">Contact Us</a>
+            </div>
+            <div class="contact-us">
+                <h4 class="">Contact</h4>
+                <p class=""><i class="fa fa-map-marker-alt me-3"></i> Nyeri-Town, Kenya</p>
+                <p class=""><i class="fa fa-phone-alt me-3"></i> +254791483840, +254757255894</p>
+                <p class=""><i class="fa fa-envelope me-3"></i> info@paulnbenonlinestore.com</p>
+                <div class="footer-icons">
+                    <a class="" href=""><i class="fab fa-twitter"></i></a>
+                    <a class="" href=""><i class="fab fa-facebook-f"></i></a>
+                    <a class="" href=""><i class="fab fa-youtube"></i></a>
+                    <a class="" href=""><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; <a class="border-bottom" href="#">Paul & Ben Online Store</a>, All Right Reserved.
+        </div>
+    </footer>
+
+    
+
+
+<script>
+    // Get the navigation element
+    const nav = document.querySelector('.navbar');
+
+    // Define the scroll threshold after which the navigation becomes sticky
+    const scrollThreshold = 70; // Adjust this value as needed
+
+    // Add a scroll event listener
+    window.addEventListener('scroll', () => {
+        if (window.scrollY >= scrollThreshold) {
+            nav.classList.add('sticky');
+        } else {
+            nav.classList.remove('sticky');
+        }
+    });
+</script>
+
+   
+</body>
+</html>

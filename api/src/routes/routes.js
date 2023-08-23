@@ -13,8 +13,8 @@ router.post('/customer/verify-token', verifyToken)
 router.post('/customer/register', registerCustomer)
 router.post('/customer/reset-password', resetPassword)
 router.post('/customer/forgot-password', forgotPassword)
+router.put('/customer/reactivate-account', reactivateCustomerAccount)
 router.put('/customer/deactivate-account/:id', authorization, deactivateCustomerAccount)
-router.put('/customer/reactivate-account/:id', authorization, reactivateCustomerAccount)
 
 // Customer routes
 router.get('/customer/:id', authorization, fetchCustomerById)

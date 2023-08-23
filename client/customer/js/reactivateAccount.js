@@ -16,7 +16,7 @@ function handleSubmissionError(message){
 let btn = document.querySelector('#act-btn')
 let passwordEl = document.querySelector('#password')
 btn.addEventListener('click', ()=>{
-    axios.post('http://127.0.0.1:3000/api/v1/employee/reactivate-account', 
+    axios.put('http://127.0.0.1:8080/api/shopie/v1/customer/reactivate-account', 
     {
         email: email,
         password: passwordEl.value
@@ -27,7 +27,7 @@ btn.addEventListener('click', ()=>{
         }
     })
     .then((response)=>{
-        window.location.href = './login.html'
+        window.location.href = '../../auth/html/login.html'
     })  
     .catch((e)=>{
         if(!e.response){
