@@ -1,6 +1,7 @@
 const mssql = require('mssql')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
+const crypto = require('crypto')
 
 const { registrationSchema, loginSchema } = require('../utils/validators')
 const { sqlConfig } = require('../config/database.connection.config')
@@ -156,4 +157,32 @@ module.exports.reactivateCustomerAccount = async(req, res)=>{
         return res.status(500).json({error: `Internal server error: ${error.message}`})
     }
 
+}
+
+
+module.exports.forgotPassword = async(req, res)=>{
+    try {
+        
+        const { email } = req.body
+        const token = crypto.randomBytes(20).toString('hex')
+
+        const pool = await mssql.connect(sqlConfig)
+        const checkEmailQuery = await pool
+        .request()
+        .input('email', email)
+        .execute('fetchCustomerByEmailProc')
+
+        if(checkEmailQuery.recordset.length <= 0){
+            return res.status(404).json({error: 'Email is not registered'})
+        }
+        
+        await pool
+        .request()
+        .input('email', email)
+        .input
+
+
+    } catch (error) {
+        return res.status(500).json({error: `Internal server error: ${error.message}`})
+    }
 }

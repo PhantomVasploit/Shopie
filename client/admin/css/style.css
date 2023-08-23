@@ -1,0 +1,145 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.heading{
+    background-color: #0FAFE9;
+}
+
+body{
+    width: 100%;
+    height: 100%;
+}
+
+
+
+/* .navbar {
+    min-height: 60px;
+    transition: all 0.5s ease;
+  }
+   */
+  
+  
+
+.navbar{
+    width: 100%;
+    height: 60px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: 0 2px 6px rgba(100, 95, 136, 0.15);
+    transition: all 0.5s ease;
+}
+
+.navbar.sticky {
+    position: fixed;
+    background-color: white;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1080;
+    animation: navTransition 0.5s ease;
+    box-shadow: 0 2px 6px rgba(100, 95, 136, 0.15);
+}
+
+  
+.navbar.sticky.fixed ~ * {
+   margin-top: 60px; /* Adjust this value to match the navbar's height */
+ }
+
+ @keyframes navTransition {
+    from {
+        transform: translateY(-100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+
+
+.navig{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+    width: 40%;
+}
+
+
+
+.shopie-logo{
+    width: 170px;
+}
+
+.buttons{
+    width: 15%;
+    /* align-self: flex-end; */
+}
+
+.buttons button{
+    border-radius: 3px;
+    border: none;
+    padding: 8px 15px;
+   
+}
+
+
+
+.lower-body{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+    justify-content: center;
+    gap: 20px;
+}
+
+
+.aside {
+    width: 200px;
+    height: 160px;
+    background-color: #0FAFE9;
+    border-radius: 7px;
+    
+    
+}
+
+
+.aside p {
+    padding: 5px 0px 5px 15px;
+    border-bottom: 1px solid #ddd;
+    background-color: #e2e0f0 ;
+}
+
+.products-body{
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.products{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.products img{
+    width: 300px;
+}
+
+.projects-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 18px;
+    
+}

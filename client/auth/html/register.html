@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/register.css    ">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <main>
+        <section class="navbar">
+            <div class="container">
+                <div class="logo">
+                    <img width="170px"  src="../assets/shopie.jpg" alt="shopie-logo">
+                </div>
+                <div class="links">
+                    <a href="#">Home</a>
+                    <a href="#">About Us</a>
+                </div>
+            </div>
+        </section>
+        <section class="login">
+            
+            <div class="left">
+                <div class="form-container">
+                    <form id="register-form" action="">
+                        <div class="top">
+                            <div class="title">New to our company?</div>
+                            <div class="text"><small>Create an account for the best experience</small></div>
+                        </div>
+                        <div class="middle">
+                            <div class="input">
+                                <input type="text" name="first-name" id="first-name" placeholder="First Name">
+                                <div class="first-name-error"></div>
+                            </div>
+                            <div class="input">
+                                <input type="text" name="last-name" id="last-name" placeholder="Last Name">
+                                <div class="last-name-error"></div>
+                            </div>
+                            <div class="input">
+                                <input type="email" name="email" id="email" placeholder="Email Address">
+                                <div class="email-error"></div>
+                            </div>
+                            <div class="input">
+                                <input type="tel" name="phone-number" id="phone-number" placeholder="Phone Number">
+                                <div class="phone-number-error"></div>
+                            </div>
+                            <div class="input">
+                                <input type="password" name="password" id="password" placeholder="Password">
+                                <div class="password-error"></div>
+                            </div>
+                            <div class="input">
+                                <input type="file"  id="profile-picture">
+                                <div class="profile-picture-error"></div>
+                            </div>
+                        </div>
+                        <div class="bottom">
+                            <div class="additional-info">
+                                <div class="check-box">
+                                    <input type="checkbox" name="remeber-me" id="remeber-me">
+                                    <label for="remeber-me">Please remember me</label>
+                                </div>
+                                
+                            </div>
+                            <div class="input">
+                                <input type="submit" value="SIGN UP">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="right">
+                
+                <div class="top-card">
+                    <div class="title">
+                        <p>Already a customer?</p>
+                        <small>Welcome back! Sign in for faster checkout.</small>
+                    </div>
+                    <div class="middle">
+                        <div class="option">
+                            <iconify-icon icon="formkit:right"></iconify-icon>
+                            <div class="text"><small>Modify and track your orders.</small></div>
+                        </div>
+                        <div class="option">
+                            <iconify-icon icon="formkit:right"></iconify-icon>
+                            <div class="text"><small>Faster checkout</small></div>
+                        </div>
+                        <div class="option">
+                            <iconify-icon icon="formkit:right"></iconify-icon>
+                            <div class="text"><small>Get a 10% discount for new customers</small></div>
+                        </div>
+                    </div>
+                    <div class="btn">
+                        <a href="../html/login.html"><button>SIGN IN</button></a>
+                    </div>
+                </div>
+                
+                <div class="bottom-card">
+                    <div class="title">
+                        <p>Guest checkout</p>
+                        <small>Not ready to become a customer?</small>
+                    </div>
+                    <div class="btn">
+                        <a href="#"><button>CHECKOUT AS GUEST</button></a>
+                    </div>
+                </div>
+            </div>
+            
+        </section>
+       
+    </main>
+</body>
+<script src="../js/register.js" defer></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+</html>

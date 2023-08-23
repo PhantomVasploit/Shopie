@@ -1,0 +1,221 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+main{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+main .navbar{
+    gap: 30px;
+    width: 100%;
+    height: 10%;
+    display: flex;
+    align-items: center;
+    box-shadow: 0px 4px 6px -2px rgba(0, 0, 0, 0.2);
+    z-index: 10000;
+}
+
+main .navbar .container{
+    gap: 100px;
+    padding: 20px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    
+}
+
+
+main .navbar .links{
+    gap: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;  
+}
+
+main .navbar .links a{
+    color: gray;
+    text-decoration: none;
+}
+
+main .login{
+    gap: 20px;
+    width: 100%;
+    height: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+main .login .left{
+    width: 50%;
+    height: 100%;
+    padding-top: 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    /* justify-content: center; */
+}
+
+main .login .left .form-container{
+    width: 80%;
+    height: 85%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #F4F4F4;
+}
+
+main .login .left .form-container form{
+    gap: 30px;
+    width: 100%;
+    height: 100%;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    background-color: #F4F4F4;
+}
+
+main .login .left .form-container form .top{
+    gap: 15px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+main .login .left .form-container form .middle, .bottom{
+    gap: 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+main .login .left .form-container form .middle .input, .bottom .input{
+    width: 100%;
+}
+
+main .login .left .form-container form .middle .input input, .bottom .input input{
+    width: 100%;
+}
+
+main .login .left .form-container .input input{
+    padding: 10px 20px;
+}
+
+main .login .left .form-container .input input[type="submit"]{
+    border: none;
+    color: white;
+    background-color: #0FAFE9;
+}
+
+main .login .left .form-container form .bottom .additional-info{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.forgot-password{
+    color: #C3B212;
+}
+
+main .login .right{
+    gap: 30px;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    padding-top: 20px;
+    align-items: center;
+    flex-direction: column;
+    /* justify-content: center; */
+    /* border: 1px solid black; */
+}
+
+main .login .right .top-card{
+    gap: 10px;
+    width: 60%;
+    height: 40%;
+    display: flex;
+    padding: 20px;
+    flex-direction: column;
+    background-color: #F4F4F4;
+}
+
+main .login .right .bottom-card{
+    gap: 30px;
+    width: 60%;
+    height: 35%;
+    display: flex;
+    padding: 20px;
+    flex-direction: column;
+    background-color: #F4F4F4;
+}
+
+main .login .right .bottom-card .title{
+    gap: 10px;
+    display: flex;
+    flex-direction: column;   
+}
+
+main .login .right .bottom-card .btn{
+    width: 100%;
+}
+
+main .login .right .bottom-card .btn button{
+    width: 100%;
+    padding: 10px 20px;
+}
+
+main .login .right .top-card .title{
+    gap: 15px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+main .login .right .top-card .middle{
+    gap: 20px;
+    width: 100%;
+    display: flex;
+    margin-left: 20px;
+    flex-direction: column;
+}
+
+main .login .right .top-card .middle .option{
+    gap: 10px;
+    display: flex;
+}
+
+main .login .right .top-card .btn{
+    padding-top: 20px;
+    width: 100%;
+}
+
+main .login .right .top-card .btn button{
+    width: 100%;
+    padding: 10px 20px;
+    border: 1px solid black;
+}
+
+
+main .footer{
+    width: 100%;
+    height: 30%;
+    border: 1px solid gray;
+}
