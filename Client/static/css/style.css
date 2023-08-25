@@ -24,7 +24,9 @@ body{
   }
    */
   
-  
+nav{
+    width: 100%;
+}
 
 .navbar{
     width: 100%;
@@ -83,6 +85,13 @@ body{
     /* align-self: flex-end; */
 }
 
+.buttons{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 5px;
+}
+
 .buttons button{
     border-radius: 3px;
     border: none;
@@ -90,7 +99,69 @@ body{
    
 }
 
+.humburger{
+    display: none;
+}
 
+
+
+@media (max-width: 767px) {
+
+.footer-container{
+    display: none;
+}
+
+.humburger{
+    display: block;
+    align-self: flex-end;
+    margin-right: 30px;
+}
+
+.buttons button{
+    /* visibility: hidden; */
+    display: none;
+}
+.buttons{
+    width: 100%;
+}
+
+.navbar{
+    width: 100%;
+}
+
+footer{
+    display: none;
+}
+
+body{
+    width: 100%;
+    border: solid red 3px;
+}
+
+
+}
+
+@media (max-width: 500px) {
+.aside{
+    display: none;
+}
+
+
+.buttons button{
+    /* visibility: hidden; */
+    display: none;
+}
+
+html,
+body{
+    width: 100%;
+    border: solid red 3px;
+}
+
+.footer-container{
+    display: none;
+}
+}
 
 .lower-body{
     width: 100%;
