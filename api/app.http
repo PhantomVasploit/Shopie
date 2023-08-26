@@ -1,5 +1,5 @@
 #add new product
-POST http://localhost:4500/products
+POST http://localhost:8080/api/shopie/v1/products
 Content-Type: application/json
 
 {

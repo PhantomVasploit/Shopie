@@ -1,7 +1,7 @@
 USE ShopieDatabase
 GO
 
--- DROP TABLE orders
+DROP TABLE orders
 
 CREATE TABLE orders(
     id INT IDENTITY(1, 1) PRIMARY KEY,
