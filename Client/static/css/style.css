@@ -16,6 +16,17 @@ body{
     flex-direction: column;
 }
 
+a {
+    text-decoration: none; 
+    color: var(--primary-primary, #282828);
+    /* Body/Medium */
+    font-family: Montserrat;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px; /* 142.857% */
+    letter-spacing: 0.25px;
+}
 
 
 /* .navbar {
@@ -103,49 +114,80 @@ nav{
     display: none;
 }
 
+.menu-options{
+    display: none;
+}
+
+.show-menu {
+    display: block;
+    /* Other styling properties */
+}
 
 
 @media (max-width: 767px) {
 
-.footer-container{
+.navbar{
+    justify-content: space-around;
+}
+
+.navig{
     display: none;
 }
 
-.humburger{
-    display: block;
-    align-self: flex-end;
-    margin-right: 30px;
-}
-
-.buttons button{
-    /* visibility: hidden; */
-    display: none;
-}
 .buttons{
-    width: 100%;
+    /* width: 100%; */
 }
 
 .navbar{
     width: 100%;
+    justify-content: space-around;
 }
 
 footer{
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-container {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.menu-options {
     display: none;
+    flex-direction: column;
+    justify-content: space-around;
+    position: absolute;
+    top: 9%;
+    right: 43px;
+    padding: 5px;
+    width: auto;
+    background-color: #dbdaed;
+    z-index: 1;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    
 }
 
-body{
-    width: 100%;
-    border: solid red 3px;
-}
-
+.menu-options p {
+padding: 5px;
 
 }
-
+}
 @media (max-width: 500px) {
 .aside{
     display: none;
 }
 
+footer{
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-container{
+    display: flex;
+    flex-direction: column;
+}
 
 .buttons button{
     /* visibility: hidden; */
@@ -155,11 +197,17 @@ body{
 html,
 body{
     width: 100%;
-    border: solid red 3px;
 }
 
 .footer-container{
-    display: none;
+    /* display: none; */
+    flex-direction: column;
+}
+
+.humburger{
+    display: block;
+    align-self: flex-end;
+    margin-right: 30px;
 }
 }
 
@@ -218,7 +266,12 @@ body{
     flex-wrap: wrap;
     width: 100%;
     gap: 18px;
+    height: 100%;
     
+}
+
+.product-details{
+    height: 100%;
 }
 
 
@@ -395,6 +448,21 @@ letter-spacing: 0.1px;
     /* border: red solid 10px; */
 }
 
+@media (max-width: 767px) {
+    .product-container{
+        flex-direction: column;
+    }
+
+    .product-image{
+        width: 250px; 
+    }
+
+    .product-details{
+        height: 100%;
+    }
+
+    
+}
 
 /* you may also like */
 .may-like{
@@ -421,6 +489,13 @@ letter-spacing: 0.1px;
 .may-like-single-product img{
     width: 200px;
     height: 160px;
+}
+
+@media (max-width: 767px) {
+    .may-like{
+        flex-direction: column;
+        margin-top: 500px;
+    }
 }
 
 /* product table view */
@@ -574,6 +649,22 @@ footer a:hover {
     margin-bottom: 30px;
 }
 
+@media (max-width: 767px) {
+.footer-container{
+    flex-direction: column;
+}
+
+.company-container{
+    margin-top: 20px;
+}
+
+.contact-us{
+    margin-top: 20px;
+}
+}
+@media (max-width: 500px) {
+    
+}
 
 /* cartView */
 
@@ -789,6 +880,18 @@ footer a:hover {
 .delivery-guide ul {
     list-style-type: ">  "; 
     padding-left: 1em; 
+}
+
+
+@media (max-width: 767px) {
+    .cart-container{
+        flex-direction: column;
+    }
+
+    .item-control {
+        width: 100px;
+        
+    }
 }
 
 

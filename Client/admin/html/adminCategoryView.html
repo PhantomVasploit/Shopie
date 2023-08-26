@@ -31,6 +31,13 @@
                             <path d="M 0 7.5 L 0 12.5 L 50 12.5 L 50 7.5 Z M 0 22.5 L 0 27.5 L 50 27.5 L 50 22.5 Z M 0 37.5 L 0 42.5 L 50 42.5 L 50 37.5 Z"></path>
                         </svg>
                 </div>
+                <div class="menu-options" id="menuOptions">
+                        <a href=""><p>Home</p></a>
+                        <a href=""><p> About Us</p></a>
+                        <a href=""><p>Contact Us</p></a>
+                        <a href=""><p>Logout</p></a>
+                    </div>
+                
             </div>
             
         </nav>
@@ -47,6 +54,8 @@
                 <p>Profile</p>
                 <p style="border-radius: 0 0 7px 7px;">Logout</p>
             </div>
+
+            
                 
 
 
@@ -207,7 +216,7 @@
     </div>
 
     <br><br><br><br>
-    <!-- <footer>
+    <footer>
         <div class="footer-container">
             <div class="footer-logo-pnb" style="">
                 <img class="footer-shopie-logo" src="../../static/img/shopie.png" alt="">
@@ -234,7 +243,7 @@
         <div class="copyright">
             &copy; <a class="border-bottom" href="#">Paul & Ben Online Store</a>, All Right Reserved.
         </div>
-    </footer> -->
+    </footer>
 
 
 <script>
@@ -278,14 +287,19 @@ function closeMenu() {
 
 
 <script>
-        document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function () {
     const hamburger = document.getElementById("hamburger");
     const menuOptions = document.getElementById("menuOptions");
 
     hamburger.addEventListener("click", function () {
-        menuOptions.classList.toggle("show-menu");
+        if (menuOptions.style.display === "block") {
+            menuOptions.style.display = "none";
+        } else {
+            menuOptions.style.display = "block";
+        }
     });
 });
+
 
     </script>
 
