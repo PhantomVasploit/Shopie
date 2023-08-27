@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../static/css/style.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>Dashboard: Admin</title>
+</head>
+<body>
+    
+
+        <nav class="navbar">
+            <img class="shopie-logo" src="../img/shopie.jpg" alt="">
+            <div class="navig">
+                <p>Home</p>
+                <p> About Us</p>
+                <p>Contact Us</p>
+            </div>
+            <div class="buttons">
+                <iconify-icon id="cartIcon" width="30px" height="30px" icon="uil:cart"></iconify-icon>
+            </div>
+        </nav>
+
+        <div class="lower-body">
+
+            
+
+            <div class="aside">
+                <p class="heading" style="margin-top: 28px; background-color: #c3efff;">Dashboard</p>
+                <p>Products</p>
+                <p>Users</p>
+                <p>Profile</p>
+                <p style="border-radius: 0 0 7px 7px;">Logout</p>
+            </div>
+                
+
+
+            <div class="products-body">
+                <h3 id="title">Electronics</h3>
+                <br>
+
+
+                <div class="products-container">
+
+
+
+                   
+                    
+                    
+                </div>
+            </div>
+
+    </div>
+
+
+<script>
+    // Get the navigation element
+    const nav = document.querySelector('.navbar');
+
+    // Define the scroll threshold after which the navigation becomes sticky
+    const scrollThreshold = 120; // Adjust this value as needed
+
+    // Add a scroll event listener
+    window.addEventListener('scroll', () => {
+        if (window.scrollY >= scrollThreshold) {
+            nav.classList.add('sticky');
+        } else {
+            nav.classList.remove('sticky');
+        }
+    });
+</script>
+
+   <script src="../js/products.js"></script>
+   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+</body>
+</html>

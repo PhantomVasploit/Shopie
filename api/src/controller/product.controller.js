@@ -8,54 +8,34 @@ const addProduct = async (req,res)=>{
         
         const { product_name, description, price, image , category ,quantity } = req.body
 
-        let success = false
-
-        // have a loop to create the product the number of times as the quantity specified
-        
-        
-
         if(!product_name || !description || !price || !image || !category|| !quantity ){
-            return res.json({ message: "please input fields" })
+            return res.status(400).json({ message: "please input fields" })
         }
 
-        for (let item = 0; item < quantity; item++) {
-            const id = v4();
+        const id = v4();
 
-            const pool = await mssql.connect(sqlConfig)
+        const pool = await mssql.connect(sqlConfig)
 
-            
-            if(pool.connected){
-            const result =  await pool.request()
-                .input('id',mssql.VarChar, id)
-                .input('product_name', mssql.VarChar, product_name)
-                .input('image', mssql.VarChar, image)
-                .input('description', mssql.VarChar, description)
-                .input('category', mssql.VarChar, category)
-                .input('price', mssql.Int, price)
-                .execute('addProduct')
+        const result =  await pool
+        .request()
+        .input('id',mssql.VarChar, id)
+        .input('product_name', mssql.VarChar, product_name)
+        .input('image', mssql.VarChar, image)
+        .input('description', mssql.VarChar, description)
+        .input('category', mssql.VarChar, category)
+        .input('price', mssql.Int, price)
+        .input('quantity', quantity)
+        .execute('addProduct')
 
-                // console.log(result.rowsAffected);
-                
-                if(result.rowsAffected==1){
-                    success = true
-                }
 
+        if(result.rowsAffected[0] >= 1){
+            return res.status(201).json({ message: "Product adding completed successfully" })
         }
-
-        }
-
-        if(success){
-            return res.json({
-                message: "Product adding completed successfully"
-            })
-        }else if(!success){
-            return res.json({message: "Product adding failled"})
-        }
-
         
+        return res.status(400).json({error: 'Error creating product'})
 
     } catch (error) {
-        return res.json({Error:error.message})
+        return res.status(500).json({error: error.message})
     }
 }
 
@@ -65,7 +45,7 @@ const fetchAllProducts = async (req,res)=>{
 
         const allprojects = (await pool.request().execute('fetchAllProducts')).recordset
         
-        res.json({projects: allprojects})
+        res.status(200).json({projects: allprojects})
 
     } catch (error) {
         return res.json({error})
@@ -77,13 +57,12 @@ const fetchCategory = async (req,res)=>{
 
         const category = req.params.category
 
-        console.log(category);
-
         const pool = await (mssql.connect(sqlConfig))
 
-        const allprojects = (await pool.request().input('category', category).execute('fetchCategory')).recordset
+        const allProducts = (await pool.request().input('category', category).execute('fetchCategory')).recordset
         
-        res.json({products: allprojects})
+        res.status(200).json({products: allProducts, message: 'Fetch successful'})
+        
     } catch (error) {
         return res.json({error})
     }

@@ -188,7 +188,7 @@ module.exports.forgotPassword = async(req, res)=>{
         .request()
         .input('email', email)
         .input('password_reset_token', token)
-        .execute('resetPasswordProc')
+        .execute('createResetPasswordToken')
 
         const transporter = nodemailer.createTransport({
             service: 'gmail',

@@ -68,10 +68,9 @@ document.querySelector('.form-container').addEventListener('submit', (e)=>{
               console.log(response);
               localStorage.setItem('user', JSON.stringify(response.data.user))
               localStorage.setItem('token', response.data.token)
-              window.location.href = '../../customer/html/customerCategoryView.html'
+              window.location.href = '../../customer/html/productCategories.html'
         })
         .catch((e)=>{
-            
             if(!e.response){
                 handleSubmissionError(e.message)
             }else if(e.response.status == 403){
