@@ -26,6 +26,17 @@
             <div class="buttons">
                 <button>Login</button>
                 <button style="background-color: #0FAFE9;">Register</button>
+                <div class="humburger" id="hamburger">
+                        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" viewBox="0 0 50 50">
+                            <path d="M 0 7.5 L 0 12.5 L 50 12.5 L 50 7.5 Z M 0 22.5 L 0 27.5 L 50 27.5 L 50 22.5 Z M 0 37.5 L 0 42.5 L 50 42.5 L 50 37.5 Z"></path>
+                        </svg>
+                </div>
+                <div class="menu-options" id="menuOptions">
+                        <a href=""><p>Home</p></a>
+                        <a href=""><p> About Us</p></a>
+                        <a href=""><p>Contact Us</p></a>
+                        <a href=""><p>Logout</p></a>
+                </div>
             </div>
         </nav>
 
@@ -104,7 +115,7 @@
     <footer>
         <div class="footer-container">
             <div class="footer-logo-pnb" style="">
-                <img class="footer-shopie-logo" src="../../static/img/shopie.png" alt="">
+                <img class="footer-shopie-logo" src="../../static/img/shopie.jpg" alt="">
             </div>
             <div class="company-container">
                 <h4 class="">Company</h4>
@@ -147,6 +158,22 @@
         }
     });
 </script>
+<script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const hamburger = document.getElementById("hamburger");
+            const menuOptions = document.getElementById("menuOptions");
+        
+            hamburger.addEventListener("click", function () {
+                if (menuOptions.style.display === "block") {
+                    menuOptions.style.display = "none";
+                } else {
+                    menuOptions.style.display = "block";
+                }
+            });
+        });
+        
+        
+            </script>
 
    
 </body>

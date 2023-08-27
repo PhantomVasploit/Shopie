@@ -28,6 +28,17 @@
             </div>
             <div class="buttons">
                 <iconify-icon id="cartIcon" width="30px" height="30px" icon="uil:cart"></iconify-icon>
+                <div class="humburger" id="hamburger">
+                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" viewBox="0 0 50 50">
+                        <path d="M 0 7.5 L 0 12.5 L 50 12.5 L 50 7.5 Z M 0 22.5 L 0 27.5 L 50 27.5 L 50 22.5 Z M 0 37.5 L 0 42.5 L 50 42.5 L 50 37.5 Z"></path>
+                    </svg>
+                </div>
+                <div class="menu-options" id="menuOptions">
+                        <a href=""><p>Home</p></a>
+                        <a href=""><p> About Us</p></a>
+                        <a href=""><p>Contact Us</p></a>
+                        <a href=""><p>Logout</p></a>
+                </div>
             </div>
         </nav>
 
@@ -154,6 +165,25 @@
         }
     });
 </script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const hamburger = document.getElementById("hamburger");
+        const menuOptions = document.getElementById("menuOptions");
+    
+        hamburger.addEventListener("click", function () {
+            if (menuOptions.style.display === "block") {
+                menuOptions.style.display = "none";
+            } else {
+                menuOptions.style.display = "block";
+            }
+        });
+    });
+    
+    
+        </script>
+
+
 <script src="../js/cart.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>

@@ -23,5 +23,5 @@ BEGIN
 
 
 
--- Drop Table Products
+Drop Table Products
 -- SELECT * FROM Products
