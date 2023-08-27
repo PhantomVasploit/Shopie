@@ -3,7 +3,8 @@ const { registerCustomer, login, deactivateCustomerAccount, reactivateCustomerAc
 const { fetchCustomerById, fetchAllCustomers, updateCustomerAccount, deleteCustomerAccount } = require('../controller/customer.controller')
 const { addProduct, fetchAllProducts, fetchOneProduct, updateProduct, deleteProject, fetchCategory } = require('../controller/product.controller');
 const { authorization } = require('../middleware/authorization')
-const { adminAuthorization } = require('../middleware/admin.authorization')
+const { adminAuthorization } = require('../middleware/admin.authorization');
+const { createNewOrder } = require('../controller/order.controller');
 
 const router = Router()
 
@@ -25,9 +26,11 @@ router.delete("/customer/:id", adminAuthorization, deleteCustomerAccount)
 //product routes
 router.post('/products', addProduct);
 router.put('/:id', adminAuthorization, updateProduct);
-router.delete('/', adminAuthorization, deleteProject);
-router.get('/', fetchAllProducts);
+router.delete('/products/:', adminAuthorization, deleteProject);
+router.get('/products', fetchAllProducts);
 router.get('/:id',fetchOneProduct);
 router.get('/category/:category', fetchCategory);
+
+router.post('/order/:customerId/:productId', authorization, createNewOrder)
 
 module.exports = router

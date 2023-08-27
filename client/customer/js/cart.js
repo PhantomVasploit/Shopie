@@ -18,9 +18,24 @@ cartIcon.addEventListener('click', ()=>{
 const viewCart = document.querySelector('.view-cart')
 const subTotalEl = document.querySelector('#sub-total')
 const totalCost = document.querySelector('#total-cost')
+const checkOutBtn = document.querySelector('#check-out')
+const logoutBtn = document.querySelector('#logout')
 
 let cart = JSON.parse(localStorage.cart)
 let orders = []
+
+function handleSubmissionError(message){
+    Toastify({
+            text: message,
+            duration: 3000, // Display duration in milliseconds
+            backgroundColor: "#f44336",
+            close: true,
+            stopOnFocus: true,
+            gravity: "top", // Position of the notification
+            position: "center", // Alignment of the notification
+        }).showToast();
+}
+
 cart.forEach((order)=>{
     let { product_name, image, category, description, ...payload } = order
     payload.quantity = 1;
@@ -70,6 +85,7 @@ cart.forEach((order)=>{
         let orderInOrders = orders.find((item)=>item.id == order.id)
         orderInOrders.quantity = quantityEl.textContent
         orders[orders.indexOf(orderInOrders)] = orderInOrders
+        updateTotal()
     })
 
     addBtn.addEventListener('click', ()=>{
@@ -88,6 +104,7 @@ cart.forEach((order)=>{
             let orderInOrders = orders.find((item)=>item.id == order.id)
             orderInOrders.quantity = quantityEl.textContent
             orders[orders.indexOf(orderInOrders)] = orderInOrders
+            updateTotal()
         }
     })
 
@@ -111,10 +128,59 @@ cart.forEach((order)=>{
     
 })
 
-let subTotal = 0
-orders.forEach((order)=>{
-    subTotal += (order.quantity * order.price)
-    subTotalEl.textContent = subTotal
+
+function updateTotal(){
+    let subTotal = 0
+    orders.forEach((order)=>{
+        subTotal += (order.quantity * order.price)
+        subTotalEl.textContent = subTotal
+    })
+
+    totalCost.textContent = parseInt(subTotalEl.textContent) + 500
+
+}
+
+updateTotal()
+
+checkOutBtn.addEventListener('click', ()=>{
+
+    orders.forEach((order)=>{
+        axios.post(`http://127.0.0.1:8080/api/shopie/v1/order/${user.id}/${order.id}`, 
+        {
+            quantity: order.quantity
+        },
+        {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer: ${token}`
+            }
+        })
+        .then((response)=>{
+            Toastify({
+                text: response.data.message,
+                backgroundColor: "#4caf50", // Custom success color
+                duration: 3000, // Time in milliseconds before the toast auto-closes
+                close: true,
+                stopOnFocus: true,
+                gravity: "top",
+                position: "center",
+              }).showToast();
+        })
+        .catch((e)=>{
+            if(!e.response){
+                handleSubmissionError(e.message)
+            }else{
+                handleSubmissionError(e.response.data.error)
+            }
+        })
+    })
+
+    window.location.href = './productCategories.html'
+
 })
 
-totalCost.textContent = parseInt(subTotalEl.textContent) + 500
+logoutBtn.addEventListener('click', ()=>{
+    localStorage.user = ''
+    localStorage.token = ''
+    window.location.href = '../../auth/html/login.html'
+})

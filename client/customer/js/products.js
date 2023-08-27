@@ -38,21 +38,7 @@ function handleSubmissionError(message){
 }
 
 axios.get(`http://127.0.0.1:8080/api/shopie/v1/category/${category}`)
-.then((response)=>{
-    let html = ""
-    Toastify({
-        text: response.data.message,
-        backgroundColor: "#4caf50", // Custom success color
-        duration: 3000, // Time in milliseconds before the toast auto-closes
-        close: true,
-        stopOnFocus: true,
-        gravity: "top",
-        position: "center",
-      }).showToast();
-
-  
-      
-
+.then((response)=>{  
       response.data.products.forEach((product)=>{
         const productEl = document.createElement('div')
         productEl.classList.add("products")
@@ -134,3 +120,10 @@ axios.get(`http://127.0.0.1:8080/api/shopie/v1/category/${category}`)
     }
 })
 
+const logoutBtn = document.querySelector('#logout')
+
+logoutBtn.addEventListener('click', ()=>{
+    localStorage.user = ''
+    localStorage.token = ''
+    window.location.href = '../../auth/html/login.html'
+})

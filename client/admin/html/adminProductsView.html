@@ -3,22 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../../static/css/style.css">
     <title>Dashboard: Admin</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100&family=Prosto+One&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100&family=Montserrat:wght@300&family=Prosto+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
 </head>
 <body>
     
 
         <nav class="navbar">
-            <img class="shopie-logo" src="../img/shopie.jpg" alt="">
+            <img class="shopie-logo" src="../../static/img/shopie.jpg" alt="">
             <div class="navig">
                 <p>Home</p>
                 <p> About Us</p>
                 <p>Contact Us</p>
             </div>
             <div class="buttons">
-                <button>Login</button>
-                <button style="background-color: #0FAFE9;">Register</button>
                 <div class="humburger" id="hamburger">
                     <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" viewBox="0 0 50 50">
                         <path d="M 0 7.5 L 0 12.5 L 50 12.5 L 50 7.5 Z M 0 22.5 L 0 27.5 L 50 27.5 L 50 22.5 Z M 0 37.5 L 0 42.5 L 50 42.5 L 50 37.5 Z"></path>
@@ -29,7 +37,7 @@
                         <a href=""><p> About Us</p></a>
                         <a href=""><p>Contact Us</p></a>
                         <a href=""><p>Logout</p></a>
-                </div>
+                    </div>
             </div>
         </nav>
 
@@ -48,236 +56,65 @@
 
 
             <div class="products-body">
-                <h3>Electronics</h3>
+                <h3 id="edit-products-heading">Products</h3>
+                
+                <!-- product table view -->
+                <div class="projects-table-container">
+                    <br>
+                <a class="add-product" href="./addNewProduct.html"><button style="padding: 10px 20px;" class="add-product">Add product</button></a>
                 <br>
-
-
-                <div class="projects-container">
-
-
-
-                    <div class="products">
-                        <div>
-                            <img src="../img/electronics.JPG" alt="">
-                            <p>Fridge</p>
-                        </div>
-                    </div>
-                    <div class="products">
-                        <div>
-                            <img src="../img/electronics.JPG" alt="">
-                            <p>Tv</p>
-                        </div>
-                    </div>
-                    <div class="products">
-                        <div>
-                            <img src="../img/electronics.JPG" alt="">
-                            <p>Heater</p>
-                        </div>
-                    </div>
-                    <div class="products">
-                        <div>
-                            <img src="../img/electronics.JPG" alt="">
-                            <p>Electronics</p>
-                        </div>
-                    </div>
-                    <div class="products">
-                        <div>
-                            <img src="../img/electronics.JPG" alt="">
-                            <p>Electronics</p>
-                        </div>
-                    </div>
-                    <div class="products">
-                        <div>
-                            <img src="../img/electronics.JPG" alt="">
-                            <p>Electronics</p>
-                        </div>
-                    </div>
-                    <div class="products">
-                        <div>
-                            <img src="../img/electronics.JPG" alt="">
-                            <p>Electronics</p>
-                        </div>
-                    </div>
-                    <div class="products">
-                        <div>
-                            <img src="../img/electronics.JPG" alt="">
-                            <p>Electronics</p>
-                        </div>
-                    </div>
-                    <div class="products">
-                        <div>
-                            <img src="../img/electronics.JPG" alt="">
-                            <p>Electronics</p>
-                        </div>
-                    </div>
-                    <div class="products">
-                        <div>
-                            <img src="../img/electronics.JPG" alt="">
-                            <p>Electronics</p>
-                        </div>
-                    </div>
-                    <div class="products">
-                        <div>
-                            <img src="../img/electronics.JPG" alt="">
-                            <p>Electronics</p>
-                        </div>
-                    </div>
-                    <div class="products">
-                        <div>
-                            <img src="../img/electronics.JPG" alt="">
-                            <p>Electronics</p>
-                        </div>
-                    </div>
-                    <div class="products">
-                        <div>
-                            <img src="../img/electronics.JPG" alt="">
-                            <p>Electronics</p>
-                        </div>
-                    </div>
-                    <div class="products">
-                        <div>
-                            <img src="../img/electronics.JPG" alt="">
-                            <p>Electronics</p>
-                        </div>
-                    </div>
-                    <div class="products">
-                        <div>
-                            <img src="../img/electronics.JPG" alt="">
-                            <p>Electronics</p>
-                        </div>
-                    </div>
-                    <div class="products">
-                        <div>
-                            <img src="../img/electronics.JPG" alt="">
-                            <p>Electronics</p>
-                        </div>
-                    </div>
-                    <div class="products">
-                        <div>
-                            <img src="../img/electronics.JPG" alt="">
-                            <p>Electronics</p>
-                        </div>
-                    </div>
-                    <div class="products">
-                        <div>
-                            <img src="../img/electronics.JPG" alt="">
-                            <p>Electronics</p>
-                        </div>
-                    </div>
-                    <div class="products">
-                        <div>
-                            <img src="../img/electronics.JPG" alt="">
-                            <p>Electronics</p>
-                        </div>
-                    </div>
-                    <div class="products">
-                        <div>
-                            <img src="../img/electronics.JPG" alt="">
-                            <p>Electronics</p>
-                        </div>
-                    </div>
-                    <div class="products">
-                        <div>
-                            <img src="../img/electronics.JPG" alt="">
-                            <p>Electronics</p>
-                        </div>
-                    </div>
-                    <div class="products">
-                        <div>
-                            <img src="../img/electronics.JPG" alt="">
-                            <p>Electronics</p>
-                        </div>
-                    </div>
-                    <div class="products">
-                        <div>
-                            <img src="../img/electronics.JPG" alt="">
-                            <p>Electronics</p>
-                        </div>
-                    </div>
-                    <div class="products">
-                        <div>
-                            <img src="../img/electronics.JPG" alt="">
-                            <p>Electronics</p>
-                        </div>
-                    </div>
-                    <div class="products">
-                        <div>
-                            <img src="../img/electronics.JPG" alt="">
-                            <p>Electronics</p>
-                        </div>
-                    </div>
-                    <div class="products">
-                        <div>
-                            <img src="../img/electronics.JPG" alt="">
-                            <p>Electronics</p>
-                        </div>
-                    </div>
-                    <div class="products">
-                        <div>
-                            <img src="../img/electronics.JPG" alt="">
-                            <p>Electronics</p>
-                        </div>
-                    </div>
-                    <div class="products">
-                        <div>
-                            <img src="../img/electronics.JPG" alt="">
-                            <p>Electronics</p>
-                        </div>
-                    </div>
-                    <div class="products">
-                        <div>
-                            <img src="../img/electronics.JPG" alt="">
-                            <p>Electronics</p>
-                        </div>
-                    </div>
-                    <div class="products">
-                        <div>
-                            <img src="../img/electronics.JPG" alt="">
-                            <p>Electronics</p>
-                        </div>
-                    </div>
-                    <div class="products">
-                        <div>
-                            <img src="../img/electronics.JPG" alt="">
-                            <p>Electronics</p>
-                        </div>
-                    </div>
-                    <div class="products">
-                        <div>
-                            <img src="../img/electronics.JPG" alt="">
-                            <p>Electronics</p>
-                        </div>
-                    </div>
-                    <div class="products">
-                        <div>
-                            <img src="../img/electronics.JPG" alt="">
-                            <p>Electronics</p>
-                        </div>
-                    </div>
-                    <div class="products">
-                        <div>
-                            <img src="../img/electronics.JPG" alt="">
-                            <p>Electronics</p>
-                        </div>
-                    </div>
-                    <div class="products">
-                        <div>
-                            <img src="../img/electronics.JPG" alt="">
-                            <p>Electronics</p>
-                        </div>
-                    </div>
-                    <div class="products">
-                        <div>
-                            <img src="../img/electronics.JPG" alt="">
-                            <p>Electronics</p>
-                        </div>
-                    </div>
-                    
-                    
+                    <table>
+                        <thead>
+                          <tr>
+                            <th>Product name</th>
+                            <th>Description</th>
+                            <th>QTY</th>
+                            <th>Price</th>
+                            <th></th>
+                            <th></th>
+                          </tr>
+                        </thead>
+                        <tbody id="productsTableBody">
+                          
+                          
+                          
+                        </tbody>
+                      </table>
                 </div>
             </div>
 
     </div>
+    <br><br><br><br>
+    <footer>
+        <div class="footer-container">
+            <div class="footer-logo-pnb" style="">
+                <img class="footer-shopie-logo" src="../../static/img/shopie.png" alt="">
+            </div>
+            <div class="company-container">
+                <h4 class="">Company</h4>
+                <a class="btn-link" href="">Home</a>
+                <a class="btn-link" href="">About Us</a>
+                <a class="btn-link" href="">Contact Us</a>
+            </div>
+            <div class="contact-us">
+                <h4 class="">Contact</h4>
+                <p class=""><i class="fa fa-map-marker-alt me-3"></i> Nyeri-Town, Kenya</p>
+                <p class=""><i class="fa fa-phone-alt me-3"></i> +254791483840, +254757255894</p>
+                <p class=""><i class="fa fa-envelope me-3"></i> info@paulnbenonlinestore.com</p>
+                <div class="footer-icons">
+                    <a class="" href=""><i class="fab fa-twitter"></i></a>
+                    <a class="" href=""><i class="fab fa-facebook-f"></i></a>
+                    <a class="" href=""><i class="fab fa-youtube"></i></a>
+                    <a class="" href=""><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; <a class="border-bottom" href="#">Paul & Ben Online Store</a>, All Right Reserved.
+        </div>
+    </footer>
+
+    
 
 
 <script>
@@ -285,7 +122,7 @@
     const nav = document.querySelector('.navbar');
 
     // Define the scroll threshold after which the navigation becomes sticky
-    const scrollThreshold = 120; // Adjust this value as needed
+    const scrollThreshold = 70; // Adjust this value as needed
 
     // Add a scroll event listener
     window.addEventListener('scroll', () => {
@@ -296,7 +133,6 @@
         }
     });
 </script>
-
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         const hamburger = document.getElementById("hamburger");
@@ -312,7 +148,10 @@
     });
     
     
-        </script>
+</script>
+<script src="../js/adminProductsView.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>   
    
 </body>
 </html>

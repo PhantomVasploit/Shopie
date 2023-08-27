@@ -11,17 +11,18 @@ module.exports.createNewOrder = async(req, res)=>{
         const pool = await mssql.connect(sqlConfig)
         const result = await pool
         .request()
-        .input('customerId', customerId)
+        .input('customer_id', customerId)
         .input('product_id', productId)
         .input('quantity', quantity)
         .execute('createNewOrderProc')
 
         if(result.rowsAffected[0] >= 1){
-            return res.status(200).json({message: 'Customer order created'})
+            return res.status(201).json({message: 'Customer order created'})
         }
         return res.status(400).json({error: 'Error creating customer order'})
 
     } catch (error) {
+        console.log(error.message);
         return res.status(500).json({error: 'Internal server error'})
     }
 

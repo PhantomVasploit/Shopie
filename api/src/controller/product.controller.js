@@ -43,12 +43,12 @@ const fetchAllProducts = async (req,res)=>{
     try {
         const pool = await (mssql.connect(sqlConfig))
 
-        const allprojects = (await pool.request().execute('fetchAllProducts')).recordset
+        const products = (await pool.request().execute('fetchAllProducts')).recordset
         
-        res.status(200).json({projects: allprojects})
+        res.status(200).json({products, message: 'Fetch successful'})
 
     } catch (error) {
-        return res.json({error})
+        return res.json({error: error.message})
     }
 }
 
@@ -62,7 +62,7 @@ const fetchCategory = async (req,res)=>{
         const allProducts = (await pool.request().input('category', category).execute('fetchCategory')).recordset
         
         res.status(200).json({products: allProducts, message: 'Fetch successful'})
-        
+
     } catch (error) {
         return res.json({error})
     }
@@ -140,45 +140,23 @@ const updateProduct= async (req,res)=>{
 const deleteProject = async (req,res)=>{
     try {
 
-        let success = []
 
-        const { product_ids } = req.body
+        const { id } = req.params
 
         const pool = await mssql.connect(sqlConfig)
 
-        // console.log(`${product_ids} p ids`);
-
-
-        for (const element of product_ids) {
-            const result = await pool.request()
-                .input('id', element)
-                .execute('deleteProduct');
-        
-            // console.log(`Deletion result for ${element}:`, result);
-        
-            if (result.rowsAffected[0] === 1) {
-                success.push(element);
-            }
+        const result = await pool.request()
+            .input('id', id)
+            .execute('deleteProduct');
+    
+    
+        if (result.rowsAffected[0] === 1) {
+            return res.status(200).json({message: 'Product deleted successfully'})
         }
         
-
-        // console.log(`${success.length} success ,${product_ids.length} products`);
-
-        if(success.length==product_ids.length){
-            res.json({
-                    message:  `${success.length} product(s) deleted successfully`
-            })
-        }else{
-            res.json({
-                message: `${product_ids.length-success.length} product(s) out of ${product_ids.length} failed deletion` 
-            })
-        }
-
-
-        
-        
+        return res.status(400).json({error: 'Error deleting product'})
     } catch (error) {
-        return res.json({Error:error.message})
+        return res.json({error: error.message})
     }
 }
 
