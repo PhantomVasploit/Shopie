@@ -209,8 +209,8 @@ module.exports.forgotPassword = async(req, res)=>{
         transporter.sendMail(mailOptions, (error, info)=>{
             if(error){
                 res.status(500).json({error: 'Internal server error'})
-            }
-            res.status(200).json({message: 'Password reset email sent'})
+            }else{
+            res.status(200).json({message: 'Password reset email sent'})}
         })
 
     } catch (error) {
