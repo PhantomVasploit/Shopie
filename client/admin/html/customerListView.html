@@ -14,7 +14,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100&family=Montserrat:wght@300&family=Prosto+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-
 </head>
 <body>
     
@@ -32,7 +31,10 @@
                 </div>
                 <div class="menu-options" id="menuOptions">
                         <a href=""><p>Home</p></a>
-                    </div>
+                        <a href=""><p> About Us</p></a>
+                        <a href=""><p>Contact Us</p></a>
+                        <a href=""><p>Logout</p></a>
+                </div>
             </div>
         </nav>
 
@@ -51,26 +53,23 @@
 
 
             <div class="products-body">
-                <h3 id="edit-products-heading">Products</h3>
+                <h3 id="edit-products-heading">Customers</h3>
                 
                 <!-- product table view -->
                 <div class="projects-table-container">
                     <br>
-                <a class="add-product" href="./addNewProduct.html"><button style="padding: 10px 20px;" class="add-product">Add product</button></a>
+                
                 <br>
                     <table>
                         <thead>
                           <tr>
-                            <th>Product name</th>
-                            <th>Description</th>
-                            <th>QTY</th>
-                            <th>Price</th>
-                            <th></th>
+                            <th>Customer name</th>
+                            <th>Email</th>
+                            <th>Phone Number</th>
                             <th></th>
                           </tr>
                         </thead>
-                        <tbody id="productsTableBody">
-                          
+                        <tbody id="tbody">
                           
                           
                         </tbody>
@@ -141,12 +140,9 @@
             }
         });
     });
-    
-    
 </script>
-<script src="../js/adminProductsView.js"></script>
+<script src="../js/customerListView.js" defer></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>   
-   
 </body>
 </html>

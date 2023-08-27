@@ -19,14 +19,14 @@ router.put('/customer/deactivate-account/:id', authorization, deactivateCustomer
 
 // Customer routes
 router.get('/customer/:id', authorization, fetchCustomerById)
-router.get('/customers', adminAuthorization, fetchAllCustomers)
+router.get('/customers',  fetchAllCustomers)
 router.put('/customer/:id', authorization, updateCustomerAccount)
 router.delete("/customer/:id", adminAuthorization, deleteCustomerAccount)
 
 //product routes
 router.post('/products', addProduct);
-router.put('/:id', adminAuthorization, updateProduct);
-router.delete('/products/:', adminAuthorization, deleteProject);
+router.put('/products/:id', adminAuthorization, updateProduct);
+router.delete('/products/:id', adminAuthorization, deleteProject);
 router.get('/products', fetchAllProducts);
 router.get('/:id',fetchOneProduct);
 router.get('/category/:category', fetchCategory);

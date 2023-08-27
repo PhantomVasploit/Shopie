@@ -86,7 +86,7 @@ const fetchOneProduct = async (req,res)=>{
             product: product
         })
     } catch (error) {
-        return res.json({error})
+        return res.json({error: error.message})
     }
 }
 
@@ -118,19 +118,19 @@ const updateProduct= async (req,res)=>{
                 console.log('update inside');
 
                 if(result.rowsAffected == 1){
-                    res.json({
+                    res.status(200).json({
                         message: 'product updated successfully'
                     })
                 }else{
-                    res.json({
-                        message: 'product not found'
+                    res.status(404).json({
+                        error: 'product not found'
                     })
                 }
 
         }
 
     } catch (error) {
-        return res.json({error})
+        return res.status(500).json({error})
     }
 }
 

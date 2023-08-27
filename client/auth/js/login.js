@@ -68,7 +68,11 @@ document.querySelector('.form-container').addEventListener('submit', (e)=>{
               console.log(response);
               localStorage.setItem('user', JSON.stringify(response.data.user))
               localStorage.setItem('token', response.data.token)
-              window.location.href = '../../customer/html/productCategories.html'
+              if(response.data.user.is_admin){
+                window.location.href = '../../admin/html/customerListView.html'
+              }else{
+                  window.location.href = '../../customer/html/productCategories.html'
+              }
         })
         .catch((e)=>{
             if(!e.response){

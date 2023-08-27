@@ -165,6 +165,7 @@ checkOutBtn.addEventListener('click', ()=>{
                 gravity: "top",
                 position: "center",
               }).showToast();
+              localStorage.cart = JSON.stringify([])
         })
         .catch((e)=>{
             if(!e.response){

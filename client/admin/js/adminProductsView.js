@@ -58,7 +58,7 @@ axios.get('http://127.0.0.1:8080/api/shopie/v1/products')
         deleteBtnCol.appendChild(deleteBtn)
 
         updateBtn.addEventListener('click', ()=>{
-            window.location.href = `./adminEditProduct.html?product=${product}`
+            window.location.href = `./adminEditProduct.html?product=${JSON.stringify(product)}`
         })
 
         deleteBtn.addEventListener('click', ()=>{
@@ -106,4 +106,12 @@ axios.get('http://127.0.0.1:8080/api/shopie/v1/products')
     }else{
         handleSubmissionError(e.response.data.error)
     }
+})
+
+const logoutBtn = document.querySelector('#logout')
+
+logoutBtn.addEventListener('click', ()=>{
+    localStorage.user = ''
+    localStorage.token = ''
+    window.location.href = '../../auth/html/login.html'
 })
