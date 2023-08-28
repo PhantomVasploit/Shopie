@@ -1,8 +1,10 @@
 const mssql = require('mssql')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
+const crypto = require('crypto')
+const nodemailer = require('nodemailer')
 
-const { registerCustomer, login, deactivateCustomerAccount, reactivateCustomerAccount } = require("../../src/controller/auth.controller")
+const { registerCustomer, login, deactivateCustomerAccount, reactivateCustomerAccount, forgotPassword, verifyToken, resetPassword } = require("../../src/controller/auth.controller")
 
 describe('User authentication tests', ()=>{
 
@@ -498,6 +500,360 @@ describe('User authentication tests', ()=>{
             expect(response.json).toHaveBeenCalledWith({message: 'Customer account re-activated successfuly'})
 
         })
+    })
+
+    describe('forgot password', ()=>{
+
+        it('should fail with status 400 and error message if request body is missing', async()=>{
+
+            const request = {}
+
+            const response = {
+                status: jest.fn().mockReturnThis(),
+                json: jest.fn()
+            }
+
+            await forgotPassword(request, response)
+            expect(response.status).toHaveBeenCalledWith(400)
+            expect(response.json).toHaveBeenCalledWith({ error: 'Request body can not be empty' })
+        })
+
+        it('should fail if email is not registered', async()=>{
+
+            const mockRecordSet = []
+
+            const request = {
+                body: {
+                    email: 'tanjiro@gmail.com'
+                }
+            }
+
+            const response = {
+                status: jest.fn().mockReturnThis(),
+                json: jest.fn()
+            }
+
+            jest.spyOn(mssql, 'connect').mockResolvedValueOnce({
+                request: jest.fn().mockReturnThis(),
+                input: jest.fn().mockReturnThis(),
+                execute: jest.fn().mockResolvedValueOnce({ recordset: mockRecordSet })
+            })
+
+            await forgotPassword(request, response)
+            expect(response.status).toHaveBeenCalledWith(404)
+            expect(response.json).toHaveBeenCalledWith({error: 'Email is not registered'})
+        })
+
+        it('should send a mail if email is authentic', async()=>{
+            
+            const mockRecordSet = [
+                {
+                    firstName: 'Tanjiro',
+                    lastName: 'Kamado',
+                    email: 'tanjiro@gmail.com',
+                    phoneNumber: '0712345678',
+                    profilePicture: 'https://www.phantomlabs.com',
+                    password: 'hjghgdgfdhg',
+                    is_verified: 1,
+                    is_deleted: 1,
+                    is_admin: 0
+                }
+            ]
+
+            const request = {
+                body: {
+                    email: 'tanjiro@gmail.com'
+                }
+            }
+
+            const response = {
+                status: jest.fn().mockReturnThis(),
+                json: jest.fn()
+            }
+
+            jest.spyOn(mssql, 'connect').mockResolvedValueOnce({
+                request: jest.fn().mockReturnThis(),
+                input: jest.fn().mockReturnThis(),
+                execute: jest.fn().mockResolvedValueOnce({ recordset: mockRecordSet })
+            })
+
+            jest.spyOn(crypto, 'randomBytes').mockReturnValueOnce('reset_token')
+
+            const createTransportSpy = jest.spyOn(nodemailer, 'createTransport');
+            const sendMailMock = jest.fn((mailOptions, callback) => {
+                callback(null, 'Email sent successfully');
+            });
+            createTransportSpy.mockReturnValue({ sendMail: sendMailMock });
+
+            await forgotPassword(request, response)
+            expect(response.status).toHaveBeenCalledWith(200)
+            expect(response.json).toHaveBeenCalledWith({message: 'Password reset email sent'})
+        })
+
+        it('should fail to send a mail if an error occurs', async()=>{
+            
+            const mockRecordSet = [
+                {
+                    firstName: 'Tanjiro',
+                    lastName: 'Kamado',
+                    email: 'tanjiro@gmail.com',
+                    phoneNumber: '0712345678',
+                    profilePicture: 'https://www.phantomlabs.com',
+                    password: 'hjghgdgfdhg',
+                    is_verified: 1,
+                    is_deleted: 1,
+                    is_admin: 0
+                }
+            ]
+
+            const request = {
+                body: {
+                    email: 'tanjiro@gmail.com'
+                }
+            }
+
+            const response = {
+                status: jest.fn().mockReturnThis(),
+                json: jest.fn()
+            }
+
+            jest.spyOn(mssql, 'connect').mockResolvedValueOnce({
+                request: jest.fn().mockReturnThis(),
+                input: jest.fn().mockReturnThis(),
+                execute: jest.fn().mockResolvedValueOnce({ recordset: mockRecordSet })
+            })
+
+            jest.spyOn(crypto, 'randomBytes').mockReturnValueOnce('reset_token')
+
+            const createTransportSpy = jest.spyOn(nodemailer, 'createTransport');
+            const sendMailMock = jest.fn((mailOptions, callback) => {
+                callback(new Error('Internal server error'), null);
+            });
+            createTransportSpy.mockReturnValue({ sendMail: sendMailMock });
+
+            await forgotPassword(request, response)
+            expect(response.status).toHaveBeenCalledWith(500)
+            expect(response.json).toHaveBeenCalledWith({error: 'Internal server error'})
+        })
+
+    })
+
+    describe('verify token', ()=>{
+        
+        it('should fail if request body is not set', async()=>{
+            const request = {}
+
+            const response = {
+                status: jest.fn().mockReturnThis(),
+                json: jest.fn()
+            }
+
+            await verifyToken(request, response)
+            expect(response.status).toHaveBeenCalledWith(400)
+            expect(response.json).toHaveBeenCalledWith({error: 'Request boody can not be empty'})
+        })
+
+        it('should fail if email is not registered', async()=>{
+
+            const mockRecordSet = []
+
+            const request = {
+                body: {
+                    email: 'tanjiro@gmail.com',
+                    token: 'ghdjkhljkhjkh'
+                }
+            }
+
+            const response = {
+                status: jest.fn().mockReturnThis(),
+                json: jest.fn()
+            }
+
+            
+            jest.spyOn(mssql, 'connect').mockResolvedValueOnce({
+                request: jest.fn().mockReturnThis(),
+                input: jest.fn().mockReturnThis(),
+                execute: jest.fn().mockResolvedValueOnce({ recordset: mockRecordSet })
+            })
+
+            await verifyToken(request, response)
+
+            expect(response.status).toHaveBeenCalledWith(404)
+            expect(response.json).toHaveBeenCalledWith({error: 'Email is not registered'})
+        })
+
+        it('should fail if token is invalid', async()=>{
+
+            const mockRecordSet = [
+                {
+                    firstName: 'Tanjiro',
+                    lastName: 'Kamado',
+                    email: 'tanjiro@gmail.com',
+                    phoneNumber: '0712345678',
+                    profilePicture: 'https://www.phantomlabs.com',
+                    password: 'hjghgdgfdhg',
+                    is_verified: 1,
+                    is_deleted: 1,
+                    is_admin: 0,
+                    password_reset_token: 'ghkh.kjujhgvk,hj'
+                }
+            ]
+
+            const request = {
+                body: {
+                    email: 'tanjiro@gmail.com',
+                    token: 'ghdjkhljkhjkh'
+                }
+            }
+
+            const response = {
+                status: jest.fn().mockReturnThis(),
+                json: jest.fn()
+            }
+
+            
+            jest.spyOn(mssql, 'connect').mockResolvedValueOnce({
+                request: jest.fn().mockReturnThis(),
+                input: jest.fn().mockReturnThis(),
+                execute: jest.fn().mockResolvedValueOnce({ recordset: mockRecordSet })
+            })
+
+            await verifyToken(request, response)
+
+            expect(response.status).toHaveBeenCalledWith(400)
+            expect(response.json).toHaveBeenCalledWith({error: 'Invalid token or token expired'})
+        })
+
+        it('should pass if token is invalid', async()=>{
+
+            const mockRecordSet = [
+                {
+                    firstName: 'Tanjiro',
+                    lastName: 'Kamado',
+                    email: 'tanjiro@gmail.com',
+                    phoneNumber: '0712345678',
+                    profilePicture: 'https://www.phantomlabs.com',
+                    password: 'hjghgdgfdhg',
+                    is_verified: 1,
+                    is_deleted: 1,
+                    is_admin: 0,
+                    password_reset_token: 'ghdjkhljkhjkh'
+                }
+            ]
+
+            const request = {
+                body: {
+                    email: 'tanjiro@gmail.com',
+                    token: 'ghdjkhljkhjkh'
+                }
+            }
+
+            const response = {
+                status: jest.fn().mockReturnThis(),
+                json: jest.fn()
+            }
+
+            
+            jest.spyOn(mssql, 'connect').mockResolvedValueOnce({
+                request: jest.fn().mockReturnThis(),
+                input: jest.fn().mockReturnThis(),
+                execute: jest.fn().mockResolvedValueOnce({ recordset: mockRecordSet })
+            })
+
+            await verifyToken(request, response)
+
+            expect(response.status).toHaveBeenCalledWith(200)
+            expect(response.json).toHaveBeenCalledWith({message: `Valid Token`})
+        })
+
+    })
+
+    describe('Reset password', ()=>{
+
+        it('should fail if request body is missing or empty', async()=>{
+            
+            const request = {}
+            const response = {
+                status: jest.fn().mockReturnThis(),
+                json: jest.fn()
+            }
+
+        
+            await resetPassword(request, response)
+            expect(response.status).toHaveBeenCalledWith(400)
+            expect(response.json).toHaveBeenCalledWith({error: "Request body can not be empty"})
+        })
+
+        it('should fail if email is not registered', async()=>{
+            const mockRecordSet = []
+
+            const request = {
+                body: {
+                    email: 'tanjiro@gmail.com',
+                    password: 'ghdjkhljkhjkh'
+                }
+            }
+
+            const response = {
+                status: jest.fn().mockReturnThis(),
+                json: jest.fn()
+            }
+
+            
+            jest.spyOn(mssql, 'connect').mockResolvedValueOnce({
+                request: jest.fn().mockReturnThis(),
+                input: jest.fn().mockReturnThis(),
+                execute: jest.fn().mockResolvedValueOnce({ recordset: mockRecordSet })
+            })
+            
+            await resetPassword(request, response)
+            expect(response.status).toHaveBeenCalledWith(404)
+        })
+        
+        it('should reset password if email is valid', async()=>{
+            const mockRecordSet = [
+                {
+                    firstName: 'Tanjiro',
+                    lastName: 'Kamado',
+                    email: 'tanjiro@gmail.com',
+                    phoneNumber: '0712345678',
+                    profilePicture: 'https://www.phantomlabs.com',
+                    password: 'hjghgdgfdhg',
+                    is_verified: 1,
+                    is_deleted: 1,
+                    is_admin: 0,
+                    password_reset_token: 'ghdjkhljkhjkh'
+                }
+            ]
+
+            const request = {
+                body: {
+                    email: 'tanjiro@gmail.com',
+                    password: 'ghdjkhljkhjkh'
+                }
+            }
+
+            const response = {
+                status: jest.fn().mockReturnThis(),
+                json: jest.fn()
+            }
+
+            
+            jest.spyOn(mssql, 'connect').mockResolvedValueOnce({
+                request: jest.fn().mockReturnThis(),
+                input: jest.fn().mockReturnThis(),
+                execute: jest.fn().mockResolvedValueOnce({ recordset: mockRecordSet })
+            })
+
+
+            jest.spyOn(bcrypt, 'genSalt').mockResolvedValueOnce()
+            jest.spyOn(bcrypt, 'hash').mockResolvedValueOnce()
+            
+            await resetPassword(request, response)
+            expect(response.status).toHaveBeenCalledWith(200)
+            expect(response.json).toHaveBeenCalledWith({message: 'Password reset successful'})
+        })
+
     })
 
 })

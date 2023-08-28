@@ -5,6 +5,10 @@ module.exports.createNewOrder = async(req, res)=>{
 
     try {
         
+        if(!req.body){
+            return res.status(400).json({error: 'Request body can not be empty'})
+        }
+
         const { customerId, productId } = req.params
         const { quantity } = req.body
 
