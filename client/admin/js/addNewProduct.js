@@ -154,7 +154,7 @@ submitBtn.addEventListener('click', ()=>{
             productUrlError.style.display = "none"                    
         })
     }
-
+   
     if(productName.value && productDescription.value && productPrice.value && productUrlString && category && productQuantity.value){
         axios.post('http://127.0.0.1:8080/api/shopie/v1/products', 
         {
@@ -180,7 +180,12 @@ submitBtn.addEventListener('click', ()=>{
                 gravity: "top",
                 position: "success",
               }).showToast();
+<<<<<<< HEAD
+              console.log("submitted clicked");
+              window.location.href = './adminCategoryView.html'
+=======
               window.location.href = './adminProductsView.html'
+>>>>>>> 78f2a17be02602cdf4455ad6be51bd9b1ccb3736
         })
         .catch((e)=>{
             if(!e.response){

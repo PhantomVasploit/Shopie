@@ -64,6 +64,8 @@ axios.get(`http://127.0.0.1:8080/api/shopie/v1/category/${category}`)
         btnDiv.classList.add('btn')
         const addToCartBtn = document.createElement("button")
         addToCartBtn.textContent = "Add to cart"
+        addToCartBtn.classList.add('btn')
+
         addToCartBtn.addEventListener('click', ()=>{
             cart = JSON.parse(localStorage.cart)  || []
             

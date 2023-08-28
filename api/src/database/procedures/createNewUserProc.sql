@@ -8,3 +8,7 @@ BEGIN
     VALUES(@first_name, @last_name, @email, @phone_number, @profile_picture, @passowrd)
 END
 GO
+
+-- select * from users
+
+-- UPDATE users SET is_admin = 1,is_verified=1 WHERE id = 1 
