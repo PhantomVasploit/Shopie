@@ -162,6 +162,7 @@ module.exports.reactivateCustomerAccount = async(req, res)=>{
         return res.status(200).json({message: 'Customer account re-activated successfuly'})
 
     } catch (error) {
+        console.log(error.message);
         return res.status(500).json({error: `Internal server error: ${error.message}`})
     }
 

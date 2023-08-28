@@ -180,8 +180,12 @@ submitBtn.addEventListener('click', ()=>{
                 gravity: "top",
                 position: "success",
               }).showToast();
+<<<<<<< HEAD
               console.log("submitted clicked");
               window.location.href = './adminCategoryView.html'
+=======
+              window.location.href = './adminProductsView.html'
+>>>>>>> 78f2a17be02602cdf4455ad6be51bd9b1ccb3736
         })
         .catch((e)=>{
             if(!e.response){
