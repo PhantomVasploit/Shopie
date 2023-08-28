@@ -35,6 +35,7 @@ const addProduct = async (req,res)=>{
         return res.status(400).json({error: 'Error creating product'})
 
     } catch (error) {
+        console.log(error.message);
         return res.status(500).json({error: error.message})
     }
 }
@@ -45,9 +46,11 @@ const fetchAllProducts = async (req,res)=>{
 
         const products = (await pool.request().execute('fetchAllProducts')).recordset
         
+
         res.status(200).json({products, message: 'Fetch successful'})
 
     } catch (error) {
+        console.log(error.message);
         return res.json({error: error.message})
     }
 }
@@ -64,6 +67,7 @@ const fetchCategory = async (req,res)=>{
         res.status(200).json({products: allProducts, message: 'Fetch successful'})
 
     } catch (error) {
+        console.log(error.message);
         return res.json({error})
     }
 }
@@ -86,6 +90,7 @@ const fetchOneProduct = async (req,res)=>{
             product: product
         })
     } catch (error) {
+        console.log(error.message);
         return res.json({error: error.message})
     }
 }
@@ -114,8 +119,7 @@ const updateProduct= async (req,res)=>{
                 .input('price', mssql.Int, price)
                 .execute('updateProject')
 
-                console.log(result);
-                console.log('update inside');
+                
 
                 if(result.rowsAffected == 1){
                     res.status(200).json({

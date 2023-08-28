@@ -172,19 +172,24 @@ module.exports.reactivateCustomerAccount = async(req, res)=>{
 module.exports.forgotPassword = async(req, res)=>{
     try {
         
-        const { email } = req.body
-        const token = crypto.randomBytes(20).toString('hex')
+        if(!req.body){
+            return res.status(400).json({error: 'Request body can not be empty'})
+        }
 
+        const { email } = req.body
+        
         const pool = await mssql.connect(sqlConfig)
         const checkEmailQuery = await pool
         .request()
         .input('email', email)
-        .execute('fetchCustomerByEmailProc')
+        .execute('fetchCustomerByEmailProc') 
 
         if(checkEmailQuery.recordset.length <= 0){
             return res.status(404).json({error: 'Email is not registered'})
         }
         
+        const token = crypto.randomBytes(20).toString('hex')
+
         await pool
         .request()
         .input('email', email)
@@ -222,6 +227,9 @@ module.exports.forgotPassword = async(req, res)=>{
 
 module.exports.verifyToken = async(req, res)=>{
     try {
+        if(!req.body){
+            return res.status(400).json({error: 'Request boody can not be empty'})
+        }
         const {token, email} = req.body
         const pool = await mssql.connect(sqlConfig)
         const checkEmailQuery = await pool
@@ -245,6 +253,10 @@ module.exports.verifyToken = async(req, res)=>{
 module.exports.resetPassword = async(req, res)=>{
     try {
         
+        if(!req.body){
+            return res.status(400).json({error: "Request body can not be empty"})
+        }
+
         const { password, email } = req.body
         const pool = await mssql.connect(sqlConfig)
         const checkEmailQuery = await pool
