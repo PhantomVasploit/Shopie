@@ -180,7 +180,7 @@ submitBtn.addEventListener('click', ()=>{
                 gravity: "top",
                 position: "success",
               }).showToast();
-              window.location.href = './adminCategoryView.html'
+              window.location.href = './adminProductsView.html'
         })
         .catch((e)=>{
             if(!e.response){

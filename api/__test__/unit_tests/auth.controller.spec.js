@@ -389,6 +389,10 @@ describe('User authentication tests', ()=>{
             const request = {
                 params: {
                     id: 0
+                },
+                body: {
+                    email: 'tanjiro@gmail.com',
+                    password: 'pajoy9903'
                 }
             }
 
@@ -427,6 +431,10 @@ describe('User authentication tests', ()=>{
             const request = {
                 params: {
                     id: 1
+                },
+                body: {
+                    email: 'tanjiro@gmail.com',
+                    password: 'pajoy9903'
                 }
             }
 
@@ -465,6 +473,10 @@ describe('User authentication tests', ()=>{
             const request = {
                 params: {
                     id: 1
+                },
+                body: {
+                    email: 'tanjiro@gmail.com',
+                    password: 'pajoy9903'
                 }
             }
 
@@ -478,6 +490,8 @@ describe('User authentication tests', ()=>{
                 input: jest.fn().mockReturnThis(),
                 execute: jest.fn().mockResolvedValueOnce({ recordset: mockRecordSet })
             })
+
+            jest.spyOn(bcrypt, 'compare').mockResolvedValueOnce(true)
 
             await reactivateCustomerAccount(request, response)
             expect(response.status).toHaveBeenCalledWith(200)
