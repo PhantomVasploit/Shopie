@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1693200474344" clover="3.2.0">
-  <project timestamp="1693200474344" name="All files">
+<coverage generated="1693230150149" clover="3.2.0">
+  <project timestamp="1693230150149" name="All files">
     <metrics statements="751" coveredstatements="581" conditionals="86" coveredconditionals="65" methods="19" coveredmethods="16" elements="856" coveredelements="662" complexity="0" loc="751" ncloc="751" packages="4" files="7" classes="7"/>
     <package name="config">
       <metrics statements="15" coveredstatements="15" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-      <file name="database.connection.config.js" path="/home/joyce/Documents/Projects/theJitu/shopie/api/src/config/database.connection.config.js">
+      <file name="database.connection.config.js" path="C:\Users\kben\Documents\jitu\shopie working directory\Shopie\api\src\config\database.connection.config.js">
         <metrics statements="15" coveredstatements="15" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -25,7 +25,7 @@
     </package>
     <package name="controller">
       <metrics statements="549" coveredstatements="383" conditionals="66" coveredconditionals="47" methods="17" coveredmethods="14"/>
-      <file name="auth.controller.js" path="/home/joyce/Documents/Projects/theJitu/shopie/api/src/controller/auth.controller.js">
+      <file name="auth.controller.js" path="C:\Users\kben\Documents\jitu\shopie working directory\Shopie\api\src\controller\auth.controller.js">
         <metrics statements="272" coveredstatements="162" conditionals="30" coveredconditionals="23" methods="7" coveredmethods="4"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -300,7 +300,7 @@
         <line num="271" count="0" type="stmt"/>
         <line num="272" count="0" type="stmt"/>
       </file>
-      <file name="customer.controller.js" path="/home/joyce/Documents/Projects/theJitu/shopie/api/src/controller/customer.controller.js">
+      <file name="customer.controller.js" path="C:\Users\kben\Documents\jitu\shopie working directory\Shopie\api\src\controller\customer.controller.js">
         <metrics statements="106" coveredstatements="94" conditionals="17" coveredconditionals="12" methods="4" coveredmethods="4"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -409,7 +409,7 @@
         <line num="105" count="0" type="stmt"/>
         <line num="106" count="3" type="stmt"/>
       </file>
-      <file name="product.controller.js" path="/home/joyce/Documents/Projects/theJitu/shopie/api/src/controller/product.controller.js">
+      <file name="product.controller.js" path="C:\Users\kben\Documents\jitu\shopie working directory\Shopie\api\src\controller\product.controller.js">
         <metrics statements="171" coveredstatements="127" conditionals="19" coveredconditionals="12" methods="6" coveredmethods="6"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -586,7 +586,7 @@
     </package>
     <package name="middleware">
       <metrics statements="61" coveredstatements="57" conditionals="20" coveredconditionals="18" methods="2" coveredmethods="2"/>
-      <file name="admin.authorization.js" path="/home/joyce/Documents/Projects/theJitu/shopie/api/src/middleware/admin.authorization.js">
+      <file name="admin.authorization.js" path="C:\Users\kben\Documents\jitu\shopie working directory\Shopie\api\src\middleware\admin.authorization.js">
         <metrics statements="32" coveredstatements="30" conditionals="10" coveredconditionals="9" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -621,7 +621,7 @@
         <line num="31" count="0" type="stmt"/>
         <line num="32" count="5" type="stmt"/>
       </file>
-      <file name="authorization.js" path="/home/joyce/Documents/Projects/theJitu/shopie/api/src/middleware/authorization.js">
+      <file name="authorization.js" path="C:\Users\kben\Documents\jitu\shopie working directory\Shopie\api\src\middleware\authorization.js">
         <metrics statements="29" coveredstatements="27" conditionals="10" coveredconditionals="9" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -656,7 +656,7 @@
     </package>
     <package name="utils">
       <metrics statements="126" coveredstatements="126" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-      <file name="validators.js" path="/home/joyce/Documents/Projects/theJitu/shopie/api/src/utils/validators.js">
+      <file name="validators.js" path="C:\Users\kben\Documents\jitu\shopie working directory\Shopie\api\src\utils\validators.js">
         <metrics statements="126" coveredstatements="126" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>

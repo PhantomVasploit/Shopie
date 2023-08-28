@@ -1,5 +1,5 @@
 TN:
-SF:src/config/database.connection.config.js
+SF:src\config\database.connection.config.js
 FNF:0
 FNH:0
 DA:1,1
@@ -23,7 +23,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:src/controller/auth.controller.js
+SF:src\controller\auth.controller.js
 FN:10,Object.<anonymous>.module.exports.registerCustomer
 FN:54,Object.<anonymous>.module.exports.login
 FN:101,Object.<anonymous>.module.exports.deactivateCustomerAccount
@@ -348,7 +348,7 @@ BRF:30
 BRH:23
 end_of_record
 TN:
-SF:src/controller/customer.controller.js
+SF:src\controller\customer.controller.js
 FN:7,Object.<anonymous>.module.exports.fetchAllCustomers
 FN:19,Object.<anonymous>.module.exports.fetchCustomerById
 FN:38,Object.<anonymous>.module.exports.updateCustomerAccount
@@ -488,7 +488,7 @@ BRF:17
 BRH:12
 end_of_record
 TN:
-SF:src/controller/product.controller.js
+SF:src\controller\product.controller.js
 FN:6,addProduct
 FN:42,fetchAllProducts
 FN:55,fetchCategory
@@ -699,7 +699,7 @@ BRF:19
 BRH:12
 end_of_record
 TN:
-SF:src/middleware/admin.authorization.js
+SF:src\middleware\admin.authorization.js
 FN:3,Object.<anonymous>.module.exports.adminAuthorization
 FNF:1
 FNH:1
@@ -752,7 +752,7 @@ BRF:10
 BRH:9
 end_of_record
 TN:
-SF:src/middleware/authorization.js
+SF:src\middleware\authorization.js
 FN:3,Object.<anonymous>.module.exports.authorization
 FNF:1
 FNH:1
@@ -802,7 +802,7 @@ BRF:10
 BRH:9
 end_of_record
 TN:
-SF:src/utils/validators.js
+SF:src\utils\validators.js
 FNF:0
 FNH:0
 DA:1,1
