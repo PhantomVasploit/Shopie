@@ -118,11 +118,6 @@ describe("fetching a single product",()=>{
 
 })
 
-
-
-
-
-
 describe("fetching all products",()=>{
 
     
@@ -198,10 +193,7 @@ describe("delete product(S)",()=>{
 
 })
 
-
-describe("update product details",()=>{
-
-    
+describe("update product details",()=>{    
 
     it("should return a message for successful product update", async ()=>{
 
@@ -291,6 +283,7 @@ describe("update product details",()=>{
 
 
 describe("fetch products by category",()=>{
+    
     it("should return products based on specified category",async ()=>{
 
         const mockedProduct =  [
