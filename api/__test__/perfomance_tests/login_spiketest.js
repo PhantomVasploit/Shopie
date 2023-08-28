@@ -13,7 +13,7 @@ export default function(){
     const url = 'http://127.0.0.1:8080/api/shopie/v1/customer/login'
     const body = JSON.stringify({
         email: 'tanjiro@gmail.com',
-        password: 'KimestuN0Yaiba3'
+        password: 'Microlab3'
     })
 
     const params = {
