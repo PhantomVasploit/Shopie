@@ -11,5 +11,8 @@
   "license": "ISC",
   "devDependencies": {
     "cypress": "^12.17.4"
+  },
+  "dependencies": {
+    "easyinvoice": "^3.0.23"
   }
 }

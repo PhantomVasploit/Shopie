@@ -7,3 +7,4 @@ AS
 BEGIN
     INSERT INTO Products( id, product_name, image, category, description, price, quantity ) VALUES (@id, @product_name , @image, @category, @description, @price, @quantity)
 END
+
