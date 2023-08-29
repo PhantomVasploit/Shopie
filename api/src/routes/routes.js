@@ -24,7 +24,7 @@ router.put('/customer/:id', authorization, updateCustomerAccount)
 router.delete("/customer/:id", adminAuthorization, deleteCustomerAccount)
 
 //product routes
-router.post('/products', addProduct);
+router.post('/products', adminAuthorization, addProduct);
 router.put('/products/:id', adminAuthorization, updateProduct);
 router.delete('/products/:id', adminAuthorization, deleteProject);
 router.get('/products', fetchAllProducts);

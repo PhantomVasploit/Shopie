@@ -7,11 +7,8 @@ export const options ={
 }
 
 export default function(){
-    const url = 'http://127.0.0.1:8080/api/shopie/v1/customer/login'
-    const body = JSON.stringify({
-        email: 'tanjiro@gmail.com',
-        password: 'Microlab3'
-    })
+    const url = 'http://127.0.0.1:8080/api/shopie/v1/category/electronics'
+    
 
     const params = {
         headers: {
@@ -19,11 +16,11 @@ export default function(){
         }   
     }
 
-    const response = http.post(url, body, params)
+    const response = http.get(url, params)
 
     check(response, {
         'is status 200': (res)=>res.status === 200,
-        'is successfully logged in': (res)=> res.body.includes('Login successful')
+        'is fetch successful': (res)=> res.body.includes('Fetch successful')
     })
     sleep(1)
 }
