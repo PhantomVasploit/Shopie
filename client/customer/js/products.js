@@ -39,7 +39,7 @@ function handleSubmissionError(message){
 
 axios.get(`http://127.0.0.1:8080/api/shopie/v1/category/${category}`)
 .then((response)=>{  
-      response.data.products.forEach((product)=>{
+      response.data.products.forEach((product, i)=>{
         const productEl = document.createElement('div')
         productEl.classList.add("products")
 
@@ -64,7 +64,7 @@ axios.get(`http://127.0.0.1:8080/api/shopie/v1/category/${category}`)
         btnDiv.classList.add('btn')
         const addToCartBtn = document.createElement("button")
         addToCartBtn.textContent = "Add to cart"
-        addToCartBtn.classList.add('btn')
+        addToCartBtn.classList.add(`btn-${i}`)
 
         addToCartBtn.addEventListener('click', ()=>{
             cart = JSON.parse(localStorage.cart)  || []
