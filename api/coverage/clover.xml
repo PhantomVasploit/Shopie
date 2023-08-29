@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 <coverage generated="1693232560441" clover="3.2.0">
   <project timestamp="1693232560441" name="All files">
@@ -834,3 +835,5 @@
     </package>
   </project>
 </coverage>
+=======
+>>>>>>> 02f1dbf6c9bb6082854625e7ad37fe34b48d1285

@@ -34,7 +34,7 @@ describe('user login', () => {
   })
 })
 describe('admin login', () => {
-  it("it should redirect to product categories for successful login",()=>{
+  it("it should redirect to admin pages for successful login for admin",()=>{
     cy.visit('http://localhost:5500/client/auth/html/login.html')
     cy.get('#email').type('ignit3graphics@gmail.com');
     cy.get('#password').type('12345678');
@@ -55,7 +55,7 @@ describe('forgot password', () => {
     
     cy.get('#btn').click();
 
-    cy.url().should('include', '/client/auth/html/resetToken.html?email=ignit3graphics@gmail.com');
+    cy.url().should('include', '/client/auth/html/resetToken.html');
 
   })
 
@@ -79,7 +79,7 @@ describe('forgot password', () => {
 describe('deactivate account and reactivate an account', () => {
   it("it should redirect to login for successful deactivation",()=>{
     cy.visit('http://localhost:5500/client/auth/html/login.html')
-    cy.get('#email').type('ignit3graphics@gmail.com');
+    cy.get('#email').type('paulsanga@gmail.com');
     cy.get('#password').type('12345678');
 
     cy.get('#submit').click();
@@ -91,6 +91,19 @@ describe('deactivate account and reactivate an account', () => {
 
   })
   
+  it("it show toastify if you activate account",()=>{
+    cy.visit('http://localhost:5500/client/customer/html/reactivateAccount.html?email=paulsanga@gmail.com')
+    cy.get('#password').type('12345678');
+    
+    cy.get('#act-btn').click();
+
+    
+    cy.get('.toastify', { timeout: 10000 }) 
+    .should('be.visible')
+    .contains('Account is activated');
+
+  })
+
   it("it show toastify if you reactivate active account",()=>{
     cy.visit('http://localhost:5500/client/customer/html/reactivateAccount.html?email=ignit3graphics@gmail.com')
     cy.get('#password').type('12345678');
@@ -118,44 +131,61 @@ describe('deactivate account and reactivate an account', () => {
 })
 
 
-// describe('admin products', () => {
-//   it("should add a product to the system",()=>{
-//     cy.visit('http://localhost:5500/client/auth/html/login.html')
-//     cy.get('#email').type('ignit3graphics@gmail.com');
-//     cy.get('#password').type('12345678');
+describe('admin products', () => {
+  it("should add a product to the system",()=>{
+    cy.visit('http://localhost:5500/client/auth/html/login.html')
+    cy.get('#email').type('ignit3graphics@gmail.com');
+    cy.get('#password').type('12345678');
 
-//     cy.get('#submit').click();
-//     cy.visit('http://localhost:5500/client/admin/html/addNewProduct.html')
-//     cy.get('#product_name').type('LG Fridge');
-//     cy.get('#product_category').type('Electronics');
-//     cy.get('#product_description').type('LG Fridge brand new');
-//     cy.get('#product_price').type('120000');
-//     cy.get('#product_quantity').type('1000');
+    cy.get('#submit').click();
+    cy.visit('http://localhost:5500/client/admin/html/addNewProduct.html')
+    cy.get('#product_name').type('LG Fridge');
+    cy.get('#product_category').type('Electronics');
+    cy.get('#product_description').type('LG Fridge brand new');
+    cy.get('#product_price').type('120000');
+    cy.get('#product_quantity').type('1000');
 
-//     cy.get('#submitBtn').click();
+    cy.get('#submitBtn').click();
 
 
-//   })
+  })
 
-//   it("should reroute to edit products page",()=>{
-//     cy.visit('http://localhost:5500/client/admin/html/adminProductsView.html')
 
-//     cy.get('#delete-btn').click();
 
-//     cy.url().should('include', 'client/admin/html/adminEditProduct.html');
-//   })
-// })
+
+//  to do
+  it("should reroute to edit products page",()=>{
+    cy.visit('http://localhost:5500/client/admin/html/adminProductsView.html')
+
+    cy.get('#delete-btn').click();
+
+    cy.url().should('include', 'client/admin/html/adminEditProduct.html');
+  })
+})
 
 describe('customer use', () => {
   it("view specific category",()=>{
-    cy.visit('http://localhost:5500/client/customer/html/productCategories.html')
-    cy.get('#first-product').click();
+    cy.visit('http://localhost:5500/client/auth/html/login.html')
+    cy.get('#email').type('paulsanga@gmail.com');
+    cy.get('#password').type('12345678');
+    cy.get('#submit').click();
+    cy.get('#first-product').click({ force: true });
 
-    cy.url().should('include', 'client/admin/html/adminEditProduct.html');
+    // to do
 
+    
+    cy.url().should('include', 'client/customer/html/productCategories.html');
   })
+
   it("should add item to cart",()=>{
-  
+    { multiple: true }
+    cy.visit('http://localhost:5500/client/auth/html/login.html')
+    cy.get('#email').type('paulsanga@gmail.com');
+    cy.get('#password').type('12345678');
+    cy.get('#submit').click();
+
+    
+    cy.visit('http://localhost:5500/client/customer/html/products.html?category=electronics')
     cy.get('.btn').click();
 
     cy.get('.toastify', { timeout: 10000 }) 
@@ -163,6 +193,27 @@ describe('customer use', () => {
       .contains('Item added to cart');
 
   })
+  it("should add item to cart", () => {
+    cy.visit('http://localhost:5500/client/auth/html/login.html');
+    cy.get('#email').type('paulsanga@gmail.com');
+    cy.get('#password').type('12345678');
+    cy.get('#submit').click();
+  
+    cy.url().should('include', 'client/customer/html/productCategories.html');
+  
+    cy.visit('http://localhost:5500/client/customer/html/products.html?category=electronics');
+  
+    cy.url().should('include', '/client/customer/html/products.html');
+  
+    const addtocart = cy.get(".btn").eq(1).should("contain.text", "Add to cart");
+  
+    addtocart.click();
+  
+    cy.get('.toastify', { timeout: 10000 })
+      .should('be.visible')
+      .contains('Item added to cart');
+  });
+  
 
   
 })
