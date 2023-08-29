@@ -27,7 +27,7 @@ const tbody = document.querySelector('#productsTableBody')
 // fetch all products
 axios.get('http://127.0.0.1:8080/api/shopie/v1/products')
 .then((response)=>{
-    response.data.products.forEach((product)=>{
+    response.data.products.forEach((product, i)=>{
 
         const tr = document.createElement('tr')
         const productNameEl = document.createElement('td')
@@ -45,7 +45,7 @@ axios.get('http://127.0.0.1:8080/api/shopie/v1/products')
         updateIcon.classList.add('fa-edit')
         updateBtn.appendChild(updateIcon)
         updateBtn.textContent = "update"
-        updateBtn.classList.add("update-btn")
+        updateBtn.classList.add(`update-btn-${i}`)
         updateBtnCol.appendChild(updateBtn)
         const deleteBtnCol = document.createElement('td')
         const deleteBtn = document.createElement('button')
