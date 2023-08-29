@@ -1,24 +1,19 @@
 describe('customer use', () => {
-  it("view specific category",()=>{
+
+  it("fetch specific category",()=>{
     cy.visit('http://localhost:5500/client/auth/html/login.html')
-      cy.get('#email').type('paulsanga@gmail.com');
-      cy.get('#password').type('12345678');
-  
-      cy.get('#submit').click();
-  
-      cy.url().should('include', '/client/customer/html/productCategories.html');
+    cy.get('#email').type('paulsanga@gmail.com');
+    cy.get('#password').type('12345678');
 
-    cy.wait(1000)
-    cy.get('#first-product').click({ force: true });
+    cy.get('#submit').click();
 
+    cy.url().should('include', '/client/customer/html/productCategories.html');
     
-
     
-    cy.url().should('include', 'client/customer/html/productCategories.html');
   })
 
   it("should add item to cart",()=>{
-    { multiple: true }
+    // { multiple: true }
     cy.visit('http://localhost:5500/client/auth/html/login.html')
     cy.get('#email').type('paulsanga@gmail.com');
     cy.get('#password').type('12345678');
@@ -33,6 +28,8 @@ describe('customer use', () => {
       .contains('Item added to cart');
 
   })
+
+  
   it("should add item to cart", () => {
     cy.visit('http://localhost:5500/client/auth/html/login.html');
     cy.get('#email').type('paulsanga@gmail.com');
